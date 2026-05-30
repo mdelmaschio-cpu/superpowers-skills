@@ -11,14 +11,19 @@ A shared, community-maintained library of Claude Code skills organized by functi
 ```
 superpowers-skills/
 ├── README.md
+├── CLAUDE.md
 ├── LICENSE                    # MIT, Copyright 2025 Jesse Vincent
 └── skills/
     ├── REQUESTS.md            # Wishlist: skills to create next
     ├── architecture/          # Architecture & system design skills
     │   ├── ABOUT.md           # Attribution for derived skills
     │   └── preserving-productive-tensions/
-    │       └── SKILL.md
     ├── collaboration/         # Team collaboration & git workflow skills (10 skills)
+    │   └── remembering-conversations/  # Node.js semantic search tool
+    │       ├── SKILL.md
+    │       ├── package.json
+    │       ├── src/
+    │       └── tests/
     ├── debugging/             # Debugging & troubleshooting skills (4 skills)
     ├── meta/                  # Skills about using/managing skills (5 skills)
     ├── problem-solving/       # Reasoning & decision-making strategies (6 skills)
@@ -95,7 +100,25 @@ The model discovers skills by matching the `description` and `when_to_use` field
 - **Explicit loophole closure** — for discipline-enforcing skills, add a rationalization table listing common excuses and counters.
 - **Red flags list** — include a self-check section the model can use when it's tempted to skip the skill's guidance.
 - **No examples dilution** — one excellent example beats multi-language variations.
-- **No build step** — this repo is plain markdown. No compilation, bundling, testing, or CI pipeline.
+- **No build step** — this repo is plain markdown. No compilation, bundling, testing, or CI pipeline (except the remembering-conversations Node.js tool).
+
+## The remembering-conversations Tool
+
+The `collaboration/remembering-conversations/` skill is the only one with executable code. It provides semantic search over past Claude Code conversations.
+
+**Stack:** Node.js, TypeScript, `better-sqlite3`, `sqlite-vec` (vector similarity), `@xenova/transformers` (local embeddings), `@anthropic-ai/claude-agent-sdk`
+
+**Scripts (run from the skill directory):**
+```bash
+npm run index    # Index conversation history into SQLite + vector store
+npm run search   # Search indexed conversations
+npm test         # Run Vitest test suite
+npm run test:watch
+```
+
+**How it works:** Conversations are embedded locally (no API call) via @xenova/transformers, stored in sqlite-vec for ANN search, with exact text match fallback. The SKILL.md documents installation hooks for automatic indexing.
+
+**When editing this skill's code:** run `npm test` after changes — it's the only skill with automated tests.
 
 ## Attribution (ABOUT.md)
 
@@ -119,7 +142,7 @@ This skill was derived from [Source Project](URL).
 
 ## What Was Adapted
 
-[Explain what the original did and what you extracted or changed.]
+[Explain what the original did and what you changed.]
 ```
 
 Skills in `problem-solving/`, `architecture/`, and `research/` are derived from the [Microsoft Amplifier](https://github.com/microsoft/amplifier) project.
