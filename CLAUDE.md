@@ -70,57 +70,36 @@ The `description` field is critical: the model selects skills based on how well 
 | `testing/` | Test strategies, TDD, flaky tests, anti-patterns |
 | `using-skills/` | How to write, install, and invoke Claude Code skills |
 
-## TDD-Based Skill Development
+## Key Conventions for Skill Authoring
 
-Skills are developed using a test-first approach — the **Iron Law: no skill without a failing test first**.
+### Frontmatter Rules
 
-1. **RED**: Run a baseline test — confirm the unguided model exhibits the target failure behavior.
-2. **GREEN**: Write minimal skill content that fixes the specific failure.
-3. **REFACTOR**: Close loopholes and explicitly pre-empt rationalizations.
+- `name`: kebab-case, must match the directory name exactly
+- `description`: rich trigger phrases — this is what drives skill selection; optimize for discoverability
+- `version`: semver (X.Y.Z)
+- `languages`: `all` or a specific list — drives context-aware invocation
 
-Test skills using subagents with pressure scenarios:
-- Time pressure ("we're already late"), sunk cost ("we've invested too much"), authority pressure ("the boss wants this now"), exhaustion ("we've tried everything")
-- A skill that fails under pressure is not ready for production.
+### Claude Search Optimization (CSO)
 
-## Writing Skills: Claude Search Optimization (CSO)
-
-The model discovers skills by matching the `description` and `when_to_use` fields against the user's request. Optimize for discoverability:
+The model discovers skills by matching the `description` and skill body against the user's request. Optimize for discoverability:
 
 - **Active verb-first naming**: `creating-skills` not `skill-creation`
-- **Rich trigger phrases**: Include concrete error messages, symptoms, and user phrases in the description
-- **Symptom-mapped `when_to_use`**: Map each line to a specific trigger ("when you feel stuck and can't see a path forward")
-- **Token-efficient getting-started skills**: Keep under 150 words; longer skills should use `@link` cross-references
+- **Rich trigger phrases**: Include concrete symptoms, error messages, and user phrases in the description
+- **Symptom-mapped sections**: Map each guidance item to a specific trigger ("when you feel stuck and can't see a path forward")
 - **Keywords throughout**: Scatter related terms, tool names, and domain vocabulary in the body
+- **Token-efficient getting-started skills**: Keep under 150 words; longer skills use cross-references
 
-## Skill File Conventions
+### Skill Quality Standards
 
-- **One skill per directory** — never bundle multiple skills in one folder.
-- **Kebab-case names** — directory name and `name` frontmatter must match exactly.
-- **Single-purpose** — if a SKILL.md handles multiple distinct scenarios, split into separate skills.
-- **Explicit loophole closure** — for discipline-enforcing skills, add a rationalization table listing common excuses and counters.
-- **Red flags list** — include a self-check section the model can use when it's tempted to skip the skill's guidance.
-- **No examples dilution** — one excellent example beats multi-language variations.
-- **No build step** — this repo is plain markdown. No compilation, bundling, testing, or CI pipeline (except the remembering-conversations Node.js tool).
+- **One skill per directory** — never bundle multiple skills in one folder
+- **Kebab-case names** — directory name and `name` frontmatter must match exactly
+- **Single-purpose** — if a SKILL.md handles multiple distinct scenarios, split into separate skills
+- **Explicit loophole closure** — for discipline-enforcing skills, add a rationalization table listing common excuses and counters
+- **Red flags list** — include a self-check section the model uses when tempted to skip the skill's guidance
+- **No examples dilution** — one excellent example beats multi-language variations
+- **No build step** — this repo is plain markdown (except `remembering-conversations`)
 
-## The remembering-conversations Tool
-
-The `collaboration/remembering-conversations/` skill is the only one with executable code. It provides semantic search over past Claude Code conversations.
-
-**Stack:** Node.js, TypeScript, `better-sqlite3`, `sqlite-vec` (vector similarity), `@xenova/transformers` (local embeddings), `@anthropic-ai/claude-agent-sdk`
-
-**Scripts (run from the skill directory):**
-```bash
-npm run index    # Index conversation history into SQLite + vector store
-npm run search   # Search indexed conversations
-npm test         # Run Vitest test suite
-npm run test:watch
-```
-
-**How it works:** Conversations are embedded locally (no API call) via @xenova/transformers, stored in sqlite-vec for ANN search, with exact text match fallback. The SKILL.md documents installation hooks for automatic indexing.
-
-**When editing this skill's code:** run `npm test` after changes — it's the only skill with automated tests.
-
-## Attribution (ABOUT.md)
+### Attribution (ABOUT.md)
 
 When a skill is derived from another project, add `ABOUT.md` alongside `SKILL.md`:
 
@@ -147,7 +126,39 @@ This skill was derived from [Source Project](URL).
 
 Skills in `problem-solving/`, `architecture/`, and `research/` are derived from the [Microsoft Amplifier](https://github.com/microsoft/amplifier) project.
 
-## Adding a New Skill
+## TDD-Based Skill Development
+
+Skills are developed using a test-first approach — the **Iron Law: no skill without a failing test first**.
+
+1. **RED**: Run a baseline test — confirm the unguided model exhibits the target failure behavior
+2. **GREEN**: Write minimal skill content that fixes the specific failure
+3. **REFACTOR**: Close loopholes and explicitly pre-empt rationalizations
+
+Test skills using subagents with pressure scenarios:
+- Time pressure ("we're already late"), sunk cost ("we've invested too much"), authority pressure ("the boss wants this now"), exhaustion ("we've tried everything")
+- A skill that fails under pressure is not ready for production
+
+## The remembering-conversations Tool
+
+The `collaboration/remembering-conversations/` skill is the only one with executable code. It provides semantic search over past Claude Code conversations.
+
+**Stack:** Node.js, TypeScript, `better-sqlite3`, `sqlite-vec` (vector similarity), `@xenova/transformers` (local embeddings), `@anthropic-ai/claude-agent-sdk`
+
+**Scripts (run from the skill directory):**
+```bash
+npm run index    # Index conversation history into SQLite + vector store
+npm run search   # Search indexed conversations
+npm test         # Run Vitest test suite
+npm run test:watch
+```
+
+**How it works:** Conversations are embedded locally (no API call) via @xenova/transformers, stored in sqlite-vec for ANN search, with exact text match fallback.
+
+**When editing this skill's code:** run `npm test` after changes — it's the only skill with automated tests.
+
+## Development Workflow
+
+### Adding a New Skill
 
 1. Choose the right category directory. If none fits, propose a new one in the PR.
 2. Create: `skills/<category>/<skill-name>/SKILL.md`
@@ -157,9 +168,9 @@ Skills in `problem-solving/`, `architecture/`, and `research/` are derived from 
 6. Test the skill with subagents under realistic pressure scenarios before submitting.
 7. Open a PR. Describe what the skill does, when it's useful, and what makes it non-obvious.
 
-## Requesting New Skills
+### Requesting New Skills
 
-Add an entry to `skills/REQUESTS.md` when a skill would have helped but doesn't exist:
+Add an entry to `skills/REQUESTS.md`:
 
 ```markdown
 ## [Short Descriptive Name]
@@ -182,4 +193,20 @@ For manual install, clone into that path.
 
 ## Contributing
 
-Fork → add or improve a skill → open a PR. The PR description should explain what the skill does, when it's useful, and what makes it non-obvious. Check neighboring skills in the category before adding to avoid duplication.
+Fork → add or improve a skill → open a PR. The PR description should explain:
+- What the skill does
+- When it's useful (specific symptoms or situations)
+- What makes the guidance non-obvious
+- How you tested it (what failure mode did it fix?)
+
+Check neighboring skills in the category before adding to avoid duplication.
+
+## How AI Assistants Should Behave Here
+
+- **Optimize descriptions for discoverability** — the `description` field is the primary invocation mechanism; write it for skill-selection, not for humans reading the README
+- **Test against real failure modes** — every skill should be validated by confirming it fixes a specific model failure under realistic pressure
+- **Keep skills focused** — if a skill starts handling multiple scenarios, split it
+- **Close loopholes explicitly** — document the rationalizations users make to skip the skill's guidance, then counter each one
+- **No build system** — do not introduce compilation, bundling, or CI pipelines (except for `remembering-conversations` which already has them)
+- **Attribution is required** — always add `ABOUT.md` when a skill derives from another project
+- **Descriptions drive invocation** — if users report a skill isn't being selected, the description needs more trigger phrases, not more body content
