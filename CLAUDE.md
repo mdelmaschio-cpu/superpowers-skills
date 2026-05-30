@@ -1,6 +1,6 @@
 # superpowers-skills
 
-Community-editable skills library for Claude Code's superpowers plugin. This repo is automatically cloned by the superpowers plugin to `~/.config/superpowers/skills/`.
+Community-editable skills library for Claude Code's superpowers plugin. Automatically cloned to `~/.config/superpowers/skills/` by the superpowers plugin.
 
 ## Repository Purpose
 
@@ -11,20 +11,20 @@ A shared, community-maintained library of Claude Code skills organized by functi
 ```
 superpowers-skills/
 ├── README.md
-├── LICENSE
+├── LICENSE                    # MIT, Copyright 2025 Jesse Vincent
 └── skills/
-    ├── REQUESTS.md                          # Wishlist: skills to create next
-    ├── architecture/                        # Architecture & system design skills
-    │   ├── ABOUT.md                         # Attribution for derived skills
-    │   └── preserving-productive-tensions/  # One directory per skill
+    ├── REQUESTS.md            # Wishlist: skills to create next
+    ├── architecture/          # Architecture & system design skills
+    │   ├── ABOUT.md           # Attribution for derived skills
+    │   └── preserving-productive-tensions/
     │       └── SKILL.md
-    ├── collaboration/                       # Team collaboration skills
-    ├── debugging/                           # Debugging & troubleshooting skills
-    ├── meta/                                # Skills about using skills
-    ├── problem-solving/                     # General problem-solving skills
-    ├── research/                            # Research & investigation skills
-    ├── testing/                             # Testing strategies and patterns
-    └── using-skills/                        # How to use Claude Code skills effectively
+    ├── collaboration/         # Team collaboration & git workflow skills (10 skills)
+    ├── debugging/             # Debugging & troubleshooting skills (4 skills)
+    ├── meta/                  # Skills about using/managing skills (5 skills)
+    ├── problem-solving/       # Reasoning & decision-making strategies (6 skills)
+    ├── research/              # Investigation & knowledge synthesis (1 skill)
+    ├── testing/               # Test strategies & anti-patterns (3 skills)
+    └── using-skills/          # How to use Claude Code skills effectively (1 skill)
 ```
 
 ## How Skills Work
@@ -37,35 +37,65 @@ Each skill lives in its own directory inside a category folder. The directory na
 name: skill-name-in-kebab-case
 description: Trigger-phrase-rich description for model invocation. Include the
   exact situations, symptoms, and phrases that should invoke this skill.
+version: X.Y.Z
+languages: all | [typescript, python, etc]
 ---
 
 # Skill Title
 
-[Skill body: instructions, patterns, examples]
+## Overview
+Core principle in 1-2 sentences.
+
+## [Custom Sections]
+Instructions, patterns, examples, red flags, rationalizations to avoid
 ```
 
-The `description` field is critical: the model selects skills based on how well the description matches the user’s request. Generic descriptions lead to the skill being skipped.
+The `description` field is critical: the model selects skills based on how well the description matches the user's request. Generic descriptions lead to the skill being skipped. Write it as if someone is searching for help with that exact problem.
 
 ## Skill Categories
 
 | Category | Purpose |
 |----------|---------|
 | `architecture/` | System design, structural patterns, trade-off analysis |
-| `collaboration/` | Team workflows, communication, handoff patterns |
+| `collaboration/` | Team workflows, git branching, communication, handoff patterns |
 | `debugging/` | Diagnosing failures, root cause analysis, error patterns |
-| `meta/` | Skills about working with Claude and Claude Code skills |
-| `problem-solving/` | General reasoning and decision-making strategies |
-| `research/` | Investigation, information synthesis, source evaluation |
-| `testing/` | Test strategies, coverage, flaky test patterns |
+| `meta/` | Skills about working with Claude Code skills themselves |
+| `problem-solving/` | General reasoning, ideation, and decision-making strategies |
+| `research/` | Investigation, information synthesis, knowledge lineage |
+| `testing/` | Test strategies, TDD, flaky tests, anti-patterns |
 | `using-skills/` | How to write, install, and invoke Claude Code skills |
 
-## Adding a New Skill
+## TDD-Based Skill Development
 
-1. Choose the right category directory. If none fits, propose a new one.
-2. Create a new directory: `skills/<category>/<skill-name>/`
-3. Create `SKILL.md` with YAML frontmatter (`name`, `description`) and the skill body.
-4. If the skill is derived from another project, add `ABOUT.md` with attribution (see below).
-5. Open a PR. Include sample output or a before/after example if the skill’s behavior isn’t immediately obvious.
+Skills are developed using a test-first approach — the **Iron Law: no skill without a failing test first**.
+
+1. **RED**: Run a baseline test — confirm the unguided model exhibits the target failure behavior.
+2. **GREEN**: Write minimal skill content that fixes the specific failure.
+3. **REFACTOR**: Close loopholes and explicitly pre-empt rationalizations.
+
+Test skills using subagents with pressure scenarios:
+- Time pressure ("we're already late"), sunk cost ("we've invested too much"), authority pressure ("the boss wants this now"), exhaustion ("we've tried everything")
+- A skill that fails under pressure is not ready for production.
+
+## Writing Skills: Claude Search Optimization (CSO)
+
+The model discovers skills by matching the `description` and `when_to_use` fields against the user's request. Optimize for discoverability:
+
+- **Active verb-first naming**: `creating-skills` not `skill-creation`
+- **Rich trigger phrases**: Include concrete error messages, symptoms, and user phrases in the description
+- **Symptom-mapped `when_to_use`**: Map each line to a specific trigger ("when you feel stuck and can't see a path forward")
+- **Token-efficient getting-started skills**: Keep under 150 words; longer skills should use `@link` cross-references
+- **Keywords throughout**: Scatter related terms, tool names, and domain vocabulary in the body
+
+## Skill File Conventions
+
+- **One skill per directory** — never bundle multiple skills in one folder.
+- **Kebab-case names** — directory name and `name` frontmatter must match exactly.
+- **Single-purpose** — if a SKILL.md handles multiple distinct scenarios, split into separate skills.
+- **Explicit loophole closure** — for discipline-enforcing skills, add a rationalization table listing common excuses and counters.
+- **Red flags list** — include a self-check section the model can use when it's tempted to skip the skill's guidance.
+- **No examples dilution** — one excellent example beats multi-language variations.
+- **No build step** — this repo is plain markdown. No compilation, bundling, testing, or CI pipeline.
 
 ## Attribution (ABOUT.md)
 
@@ -92,9 +122,21 @@ This skill was derived from [Source Project](URL).
 [Explain what the original did and what you extracted or changed.]
 ```
 
+Skills in `problem-solving/`, `architecture/`, and `research/` are derived from the [Microsoft Amplifier](https://github.com/microsoft/amplifier) project.
+
+## Adding a New Skill
+
+1. Choose the right category directory. If none fits, propose a new one in the PR.
+2. Create: `skills/<category>/<skill-name>/SKILL.md`
+3. Fill in YAML frontmatter with `name`, `description`, and optionally `version` and `languages`.
+4. Write the skill body. Include an overview, instructions, and at minimum one concrete example.
+5. If derived from another project, add `ABOUT.md` with full attribution.
+6. Test the skill with subagents under realistic pressure scenarios before submitting.
+7. Open a PR. Describe what the skill does, when it's useful, and what makes it non-obvious.
+
 ## Requesting New Skills
 
-When you encounter a situation where a skill would have helped but one doesn’t exist, add an entry to `skills/REQUESTS.md`:
+Add an entry to `skills/REQUESTS.md` when a skill would have helped but doesn't exist:
 
 ```markdown
 ## [Short Descriptive Name]
@@ -104,21 +146,11 @@ When you encounter a situation where a skill would have helped but one doesn’t
 **Added:** YYYY-MM-DD
 ```
 
-Be specific: "Flaky test debugging" beats "testing help". Include error messages or behavior patterns where possible. One skill per request.
-
-## Conventions
-
-- **One skill per directory** — don’t bundle multiple skills in one folder.
-- **Kebab-case names** — directory name and `name` frontmatter must match.
-- **Single-purpose** — if a `SKILL.md` handles multiple distinct scenarios, split it into separate skills.
-- **Trigger-phrase-rich descriptions** — think about what the user actually types; write the description to match those patterns.
-- **Attribution** — if derived from another repo, include `ABOUT.md`.
-- **No build step** — this repo is plain markdown; no compilation, bundling, testing, or CI needed.
+Be specific: "Flaky test debugging" beats "testing help". Include error messages or behavior patterns where possible.
 
 ## Installation
 
-This repo is consumed automatically by the superpowers plugin:
-
+Consumed automatically by the superpowers plugin:
 ```
 ~/.config/superpowers/skills/
 ```
@@ -127,4 +159,4 @@ For manual install, clone into that path.
 
 ## Contributing
 
-Fork → add or improve a skill → open a PR. The PR description should explain what the skill does, when it’s useful, and what makes it non-obvious. If you’re adding to an existing category, check whether a nearby skill already covers the use case.
+Fork → add or improve a skill → open a PR. The PR description should explain what the skill does, when it's useful, and what makes it non-obvious. Check neighboring skills in the category before adding to avoid duplication.
