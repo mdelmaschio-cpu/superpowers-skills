@@ -16,10 +16,10 @@ superpowers-skills/
 └── skills/
     ├── REQUESTS.md            # Wishlist: skills to create next
     ├── architecture/          # Architecture & system design skills
-    │   ├── ABOUT.md           # Attribution for derived skills
+    │   ├── ABOUT.md
     │   └── preserving-productive-tensions/
     ├── collaboration/         # Team collaboration & git workflow skills (10 skills)
-    │   └── remembering-conversations/  # Node.js semantic search tool
+    │   └── remembering-conversations/  # Node.js semantic search (has executable code)
     │       ├── SKILL.md
     │       ├── package.json
     │       ├── src/
@@ -31,6 +31,19 @@ superpowers-skills/
     ├── testing/               # Test strategies & anti-patterns (3 skills)
     └── using-skills/          # How to use Claude Code skills effectively (1 skill)
 ```
+
+## Skill Categories
+
+| Category | Purpose |
+|----------|---------|
+| `architecture/` | System design, structural patterns, trade-off analysis |
+| `collaboration/` | Team workflows, git branching, communication, handoff patterns |
+| `debugging/` | Diagnosing failures, root cause analysis, error patterns |
+| `meta/` | Skills about working with Claude Code skills themselves |
+| `problem-solving/` | General reasoning, ideation, and decision-making strategies |
+| `research/` | Investigation, information synthesis, knowledge lineage |
+| `testing/` | Test strategies, TDD, flaky tests, anti-patterns |
+| `using-skills/` | How to write, install, and invoke Claude Code skills |
 
 ## How Skills Work
 
@@ -56,19 +69,6 @@ Instructions, patterns, examples, red flags, rationalizations to avoid
 ```
 
 The `description` field is critical: the model selects skills based on how well the description matches the user's request. Generic descriptions lead to the skill being skipped. Write it as if someone is searching for help with that exact problem.
-
-## Skill Categories
-
-| Category | Purpose |
-|----------|---------|
-| `architecture/` | System design, structural patterns, trade-off analysis |
-| `collaboration/` | Team workflows, git branching, communication, handoff patterns |
-| `debugging/` | Diagnosing failures, root cause analysis, error patterns |
-| `meta/` | Skills about working with Claude Code skills themselves |
-| `problem-solving/` | General reasoning, ideation, and decision-making strategies |
-| `research/` | Investigation, information synthesis, knowledge lineage |
-| `testing/` | Test strategies, TDD, flaky tests, anti-patterns |
-| `using-skills/` | How to write, install, and invoke Claude Code skills |
 
 ## Key Conventions for Skill Authoring
 
@@ -117,7 +117,7 @@ This skill was derived from [Source Project](URL).
 ## Skills Derived
 
 **From <agent/component name>:**
-- <skill-name> - What was adapted and why
+- <skill-name> — What was adapted and why
 
 ## What Was Adapted
 
@@ -134,9 +134,13 @@ Skills are developed using a test-first approach — the **Iron Law: no skill wi
 2. **GREEN**: Write minimal skill content that fixes the specific failure
 3. **REFACTOR**: Close loopholes and explicitly pre-empt rationalizations
 
-Test skills using subagents with pressure scenarios:
-- Time pressure ("we're already late"), sunk cost ("we've invested too much"), authority pressure ("the boss wants this now"), exhaustion ("we've tried everything")
-- A skill that fails under pressure is not ready for production
+**Pressure scenarios to test against:**
+- Time pressure ("we're already late")
+- Sunk cost ("we've invested too much")
+- Authority pressure ("the boss wants this now")
+- Exhaustion ("we've tried everything")
+
+A skill that fails under pressure is not ready for production.
 
 ## The remembering-conversations Tool
 
@@ -144,7 +148,7 @@ The `collaboration/remembering-conversations/` skill is the only one with execut
 
 **Stack:** Node.js, TypeScript, `better-sqlite3`, `sqlite-vec` (vector similarity), `@xenova/transformers` (local embeddings), `@anthropic-ai/claude-agent-sdk`
 
-**Scripts (run from the skill directory):**
+**Scripts (run from `skills/collaboration/remembering-conversations/`):**
 ```bash
 npm run index    # Index conversation history into SQLite + vector store
 npm run search   # Search indexed conversations
@@ -152,7 +156,7 @@ npm test         # Run Vitest test suite
 npm run test:watch
 ```
 
-**How it works:** Conversations are embedded locally (no API call) via @xenova/transformers, stored in sqlite-vec for ANN search, with exact text match fallback.
+**How it works:** Conversations are embedded locally (no API call) via `@xenova/transformers`, stored in `sqlite-vec` for ANN search, with exact text match fallback.
 
 **When editing this skill's code:** run `npm test` after changes — it's the only skill with automated tests.
 
@@ -210,3 +214,4 @@ Check neighboring skills in the category before adding to avoid duplication.
 - **No build system** — do not introduce compilation, bundling, or CI pipelines (except for `remembering-conversations` which already has them)
 - **Attribution is required** — always add `ABOUT.md` when a skill derives from another project
 - **Descriptions drive invocation** — if users report a skill isn't being selected, the description needs more trigger phrases, not more body content
+- **Iron Law** — never author a skill without first proving a baseline test fails without it
