@@ -1,7 +1,7 @@
 ---
 name: Product Pair
 description: Suggest 5-8 complementary products that work well with a source item based on design principles, materials, scale, and price alignment.
-when_to_use: when completing a room package around an anchor piece, finding complementary furniture for a sofa or desk, or building a cohesive FF&E palette around a hero product
+when_to_use: when completing a room package around an anchor piece, finding complementary furniture for a sofa or desk, or building a cohesive FF&E palette around a hero product — oppure quando si completa un pacchetto arredamento attorno a un pezzo principale, si trovano complementi per un divano o scrivania, o si costruisce una palette FF&E coerente per una stanza
 version: 1.0.0
 languages: all
 allowed-tools:

@@ -1,7 +1,7 @@
 ---
 name: CSI Specification Writer
 description: Generate structured three-part CSI MasterFormat 2020 construction specification sections from materials lists, product schedules, or project descriptions.
-when_to_use: when generating outline specifications for a construction project, organizing materials by CSI division, writing three-part spec sections with submittals and quality assurance language, or preparing specification documents from a product schedule
+when_to_use: when generating outline specifications for a construction project, organizing materials by CSI division, writing three-part spec sections with submittals and quality assurance language, or preparing specification documents from a product schedule — oppure quando si generano specifiche outline per un progetto di costruzione, si organizzano i materiali per divisione CSI, si scrivono sezioni specifiche in tre parti con submittals e quality assurance, o si preparano documenti di specifica da un computo prodotti
 version: 1.0.0
 languages: all
 allowed-tools:

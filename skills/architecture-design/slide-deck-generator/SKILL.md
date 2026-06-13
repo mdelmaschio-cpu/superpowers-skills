@@ -1,7 +1,7 @@
 ---
 name: Slide Deck Generator
 description: Transform topics, outlines, documents, or data into self-contained HTML slide decks using the ALPA design system — 22 slide types, minimal aesthetic, keyboard navigation.
-when_to_use: when generating a presentation from a topic, outline, report, or dataset; creating client-facing architecture presentations; or building a self-contained HTML slide deck with a professional minimal design
+when_to_use: when generating a presentation from a topic, outline, report, or dataset; creating client-facing architecture presentations; or building a self-contained HTML slide deck with a professional minimal design — oppure quando si genera una presentazione da un tema, scaletta, report o dataset, si creano presentazioni per clienti di architettura, o si costruisce una slide deck HTML con design minimalista professionale
 version: 1.0.0
 languages: all
 allowed-tools:

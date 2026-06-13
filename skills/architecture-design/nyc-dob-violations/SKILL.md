@@ -1,7 +1,7 @@
 ---
 name: NYC DOB Violations Lookup
 description: Search Department of Buildings and Environmental Control Board violations for any NYC property using address, BBL, or BIN.
-when_to_use: when checking building code violations and ECB penalties for a NYC property; performing due diligence on a property acquisition; or researching compliance history before starting a renovation project
+when_to_use: when checking building code violations and ECB penalties for a NYC property; performing due diligence on a property acquisition; or researching compliance history before starting a renovation project — oppure quando si verificano violazioni del codice edilizio e sanzioni ECB per una proprietà a NYC, o si esegue due diligence per un'acquisizione immobiliare
 version: 1.0.0
 languages: all
 allowed-tools:

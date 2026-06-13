@@ -1,7 +1,7 @@
 ---
 name: NYC BSA Variances Lookup
 description: Look up Board of Standards and Appeals variances and special permits for any NYC property — covers records from 1998 to present.
-when_to_use: when checking whether a NYC property has approved zoning variances, special permits, or BSA relief that may affect future development proposals; performing due diligence on properties with unusual development histories
+when_to_use: when checking whether a NYC property has approved zoning variances, special permits, or BSA relief that may affect future development proposals; performing due diligence on properties with unusual development histories — oppure quando si verifica se una proprietà a NYC ha varianze urbanistiche approvate, permessi speciali o esenzioni BSA che potrebbero influenzare futuri sviluppi
 version: 1.0.0
 languages: all
 allowed-tools:

@@ -1,7 +1,7 @@
 ---
 name: Master Schedule
 description: Verify and set up the Google Sheets product library connection for the current project — runs silently before other product operations.
-when_to_use: when setting up a project's product library sheet for the first time, reconnecting to a different sheet, or diagnosing Google Sheets MCP connection failures in the product workflow
+when_to_use: when setting up a project's product library sheet for the first time, reconnecting to a different sheet, or diagnosing Google Sheets MCP connection failures in the product workflow — oppure quando si configura per la prima volta il foglio libreria prodotti di un progetto, ci si riconnette a un foglio diverso, o si diagnosticano errori di connessione Google Sheets nel flusso prodotti
 version: 1.0.0
 languages: all
 allowed-tools:

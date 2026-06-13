@@ -1,7 +1,7 @@
 ---
 name: Project Dossier
 description: Maintain PROJECT.md — a persistent project facts file documenting identity, site conditions, zoning constraints, program requirements, code standards, and a decision index for architecture projects.
-when_to_use: when starting a new architecture project and needing a shared facts file, updating project facts after analysis findings, or ensuring all project skills share consistent project data from a single source of truth
+when_to_use: when starting a new architecture project and needing a shared facts file, updating project facts after analysis findings, or ensuring all project skills share consistent project data from a single source of truth — oppure quando si avvia un nuovo progetto architettonico e serve un file di riferimento condiviso, si aggiornano i dati di progetto dopo nuove analisi, o si assicura che tutte le skill di progetto condividano dati coerenti da un'unica fonte
 version: 1.0.0
 languages: all
 allowed-tools:

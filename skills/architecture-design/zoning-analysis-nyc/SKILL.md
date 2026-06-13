@@ -1,7 +1,7 @@
 ---
 name: NYC Zoning Analysis
 description: Analyze building envelope regulations for NYC properties using PLUTO database records and Zoning Resolution rules — FAR, height, setbacks, permitted uses, overlays, and special districts.
-when_to_use: when analyzing zoning regulations for a NYC property; calculating maximum buildable area, FAR, height limits, and setbacks; researching permitted uses; understanding overlays and special districts; or preparing a zoning analysis for an architecture or development project
+when_to_use: when analyzing zoning regulations for a NYC property; calculating maximum buildable area, FAR, height limits, and setbacks; researching permitted uses; understanding overlays and special districts; or preparing a zoning analysis for an architecture or development project — oppure quando si analizzano le normative urbanistiche per una proprietà a NYC, si calcola la superficie massima edificabile, FAR, limiti di altezza e distacchi, o si prepara un'analisi urbanistica per un progetto architettonico o di sviluppo
 version: 1.0.0
 languages: all
 allowed-tools:

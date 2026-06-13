@@ -1,7 +1,7 @@
 ---
 name: Environmental Site Analysis
 description: Research and compile climate, natural hazard, and environmental data for any site using publicly available governmental and scientific sources.
-when_to_use: when performing environmental site analysis for an architecture or planning project; researching climate conditions, flood zones, seismic risk, or soil conditions for a site; or compiling a comprehensive environmental brief before design begins
+when_to_use: when performing environmental site analysis for an architecture or planning project; researching climate conditions, flood zones, seismic risk, or soil conditions for a site; or compiling a comprehensive environmental brief before design begins — oppure quando si esegue un'analisi ambientale del sito per un progetto architettonico, si ricercano condizioni climatiche, zone alluvionali, rischio sismico o caratteristiche del suolo
 version: 1.0.0
 languages: all
 allowed-tools:

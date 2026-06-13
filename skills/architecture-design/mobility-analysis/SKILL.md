@@ -1,7 +1,7 @@
 ---
 name: Mobility and Transit Analysis
 description: Research and compile transit access, walkability, cycling infrastructure, and mobility data for any site using publicly available governmental and transit authority sources.
-when_to_use: when performing mobility and transit site analysis for an architecture or planning project; researching walk scores, transit access, cycling infrastructure, or parking supply for a site; or compiling a mobility brief as part of site analysis
+when_to_use: when performing mobility and transit site analysis for an architecture or planning project; researching walk scores, transit access, cycling infrastructure, or parking supply for a site; or compiling a mobility brief as part of site analysis — oppure quando si esegue un'analisi della mobilità e dei trasporti per un sito; si ricercano indici di camminabilità, accesso ai mezzi pubblici, infrastruttura ciclabile o disponibilità di parcheggi
 version: 1.0.0
 languages: all
 allowed-tools:

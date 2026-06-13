@@ -1,7 +1,7 @@
 ---
 name: Product Image Processor
 description: Batch-download, resize, and remove backgrounds from product images stored in a Google Sheet.
-when_to_use: when preparing product images for presentations or schedules, removing backgrounds from furniture photos, or batch-resizing product images to a standard size
+when_to_use: when preparing product images for presentations or schedules, removing backgrounds from furniture photos, or batch-resizing product images to a standard size — oppure quando si preparano immagini prodotto per presentazioni o computi, si rimuovono gli sfondi da foto di arredamento, o si ridimensionano in batch immagini prodotto
 version: 1.0.0
 languages: all
 allowed-tools:

@@ -1,7 +1,7 @@
 ---
 name: FF&E Product Research
 description: Research FF&E products for designers — captures design briefs, searches for matching products across contract and residential markets, presents curated candidates, and saves selections to a master schedule.
-when_to_use: when searching for furniture, fixtures, and equipment matching a design brief; researching product alternatives; or building a product shortlist with specifications and pricing for an architecture or interior design project
+when_to_use: when searching for furniture, fixtures, and equipment matching a design brief; researching product alternatives; or building a product shortlist with specifications and pricing for an architecture or interior design project — oppure quando si cercano arredi, complementi e attrezzature corrispondenti a un brief di progetto, si ricercano alternative prodotto, o si costruisce una shortlist con specifiche e prezzi per un progetto di architettura o interior design
 version: 1.0.0
 languages: all
 allowed-tools:
