@@ -18,6 +18,19 @@ superpowers-skills/
     ├── architecture/          # Architecture & system design skills (1 skill)
     │   ├── ABOUT.md           # Attribution for derived skills
     │   └── preserving-productive-tensions/
+    ├── architecture-design/   # Architectural practice & FF&E/product workflows (42 skills)
+    │   ├── ABOUT.md           # Derived from AlpacaLabsLLC/skills-for-architects
+    │   ├── studio/, skills-menu/  # Dispatcher for the 39 product/design skills (invoke with /studio)
+    │   ├── color-palette-generator/, csv-to-sif/, decision/, demographics-analysis/,
+    │   │   environmental-analysis/, epd-compare/, epd-parser/, epd-research/, epd-to-spec/,
+    │   │   master-schedule/, mobility-analysis/, nyc-acris/, nyc-bsa/, nyc-dob-permits/,
+    │   │   nyc-dob-violations/, nyc-hpd/, nyc-landmarks/, nyc-property-report/,
+    │   │   occupancy-calculator/, product-data-cleanup/, product-data-import/, product-enrich/,
+    │   │   product-image-processor/, product-match/, product-pair/, product-research/,
+    │   │   product-spec-bulk-fetch/, product-spec-pdf-parser/, project-dossier/, resize-images/,
+    │   │   sif-to-csv/, site-history/, slide-deck-generator/, spec-writer/,
+    │   │   workplace-programmer/, zoning-analysis-nyc/, zoning-envelope/
+    │   └── rendering-prompt/, svg-floor-plan/, threejs-massing/  # Graphic output: AI render prompts, SVG plans, Three.js massing
     ├── collaboration/         # Team collaboration & git workflow skills (10 skills)
     │   ├── brainstorming/
     │   ├── dispatching-parallel-agents/
@@ -33,6 +46,12 @@ superpowers-skills/
     │   ├── subagent-driven-development/
     │   ├── using-git-worktrees/
     │   └── writing-plans/
+    ├── context-engineering/   # Context, memory & multi-agent harness design (15 skills)
+    │   ├── ABOUT.md           # Derived from muratcankoylan/Agent-Skills-for-Context-Engineering
+    │   ├── advanced-evaluation/, bdi-mental-states/, context-compression/, context-degradation/,
+    │   │   context-fundamentals/, context-optimization/, evaluation/, filesystem-context/,
+    │   │   harness-engineering/, hosted-agents/, latent-briefing/, memory-systems/,
+    │   │   multi-agent-patterns/, project-development/, tool-design/
     ├── debugging/             # Debugging & troubleshooting skills (4 skills)
     │   ├── defense-in-depth/
     │   ├── root-cause-tracing/
@@ -55,6 +74,17 @@ superpowers-skills/
     ├── research/              # Investigation & knowledge synthesis (1 skill)
     │   ├── ABOUT.md
     │   └── tracing-knowledge-lineages/
+    ├── swiss-architecture/    # Swiss architectural practice & SIA norms (14 skills)
+    │   ├── ABOUT.md           # Written for SIA/MINERGIE/VKF/SUVA/NPK and cantonal building law
+    │   ├── accessibility-ch/, bauleitung-ch/, bkp-cost-plan/, building-permit-ch/,
+    │   │   cantonal-zoning-ch/, minergie-energy/, npk-leistungsverzeichnis/, sia-102-honorar/,
+    │   │   sia-118-contract/, sia-competitions/, sia-norms/, sia-phases/, suva-sicherheit/,
+    │   │   vkf-brandschutz/
+    ├── swiss-law/             # Swiss law for architects/construction managers (9 skills)
+    │   ├── ABOUT.md           # contract-review adapted from evolsb/claude-legal-skill; rest written from scratch
+    │   ├── contract-review/, swiss-construction-law/, swiss-corporate-law/,
+    │   │   swiss-data-protection/, swiss-debt-collection/, swiss-employment-law/,
+    │   │   swiss-ip-architects/, swiss-procurement-law/, swiss-tenancy-law/
     ├── testing/               # Test strategies & anti-patterns (3 skills)
     │   ├── condition-based-waiting/
     │   ├── test-driven-development/
@@ -64,6 +94,8 @@ superpowers-skills/
         ├── find-skills        # Shell script: list/filter available skills
         └── skill-run          # Shell script: invoke a skill by name
 ```
+
+Total: **111 skills** across 12 categories.
 
 ## How Skills Work
 
@@ -87,13 +119,19 @@ Note: `when_to_use` (not `description`) is the primary field the model uses for 
 | Category | Purpose | Count |
 |----------|---------|-------|
 | `architecture/` | System design, structural patterns, trade-off analysis | 1 |
+| `architecture-design/` | Architectural practice, FF&E/product workflows, NYC zoning/permits, graphic output (`/studio` dispatcher) | 42 |
 | `collaboration/` | Team workflows, git branching, communication, handoff patterns | 10 |
+| `context-engineering/` | Context, memory, evaluation, and multi-agent harness design | 15 |
 | `debugging/` | Diagnosing failures, root cause analysis, error patterns | 4 |
 | `meta/` | Skills about working with Claude Code skills themselves | 5 |
 | `problem-solving/` | General reasoning, ideation, and decision-making strategies | 6 |
 | `research/` | Investigation, information synthesis, knowledge lineage | 1 |
+| `swiss-architecture/` | Swiss architectural practice: SIA norms, BKP costing, MINERGIE, permits, Bauleitung | 14 |
+| `swiss-law/` | Swiss law for architects/construction managers: OR/CO, nLPD, SchKG, IVöB, URG | 9 |
 | `testing/` | Test strategies, TDD, flaky tests, anti-patterns | 3 |
 | `using-skills/` | How to write, install, and invoke Claude Code skills | 1 |
+
+**Total: 111 skills**
 
 ## Key Conventions for Skill Authoring
 
@@ -153,7 +191,7 @@ This skill was derived from [Source Project](URL).
 [Explain what the original did and what you changed.]
 ```
 
-Skills in `problem-solving/`, `architecture/`, and `research/` are derived from the [Microsoft Amplifier](https://github.com/microsoft/amplifier) project.
+Skills in `problem-solving/`, `architecture/`, and `research/` are derived from the [Microsoft Amplifier](https://github.com/microsoft/amplifier) project. `architecture-design/` is derived from [skills-for-architects](https://github.com/AlpacaLabsLLC/skills-for-architects). `context-engineering/` is derived from [Agent-Skills-for-Context-Engineering](https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering). `swiss-architecture/` and `swiss-law/` are written from scratch for Swiss practice (`swiss-law/contract-review` adapts `evolsb/claude-legal-skill`); see each category's `ABOUT.md`.
 
 ## TDD-Based Skill Development
 
