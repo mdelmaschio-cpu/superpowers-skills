@@ -1,7 +1,7 @@
 ---
 name: EPD Comparator
 description: Compare 2+ building products side-by-side on environmental impact metrics — normalizes declared units, checks system boundary alignment, and flags LEED MRc2 compliance.
-when_to_use: when comparing environmental impact of alternative building products using EPD data, evaluating products for LEED MRc2 compliance, or selecting between competing materials based on GWP and other impact indicators
+when_to_use: when comparing environmental impact of alternative building products using EPD data, evaluating products for LEED MRc2 compliance, or selecting between competing materials based on GWP and other impact indicators — oppure quando si confronta l'impatto ambientale di prodotti edilizi alternativi con dati EPD, si valutano prodotti per LEED MRc2, o si sceglie tra materiali in base al GWP e carbon embodied
 version: 1.0.0
 languages: all
 allowed-tools:

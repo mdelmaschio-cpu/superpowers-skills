@@ -1,7 +1,7 @@
 ---
 name: Neighborhood Context and History Research
 description: Research the historical context, architectural character, adjacent uses, landmarks, and planned development for any site using governmental, museum, and university sources.
-when_to_use: when researching the historical and contextual background of a site for an architecture project; understanding a neighborhood's architectural character, past uses, and development history; or preparing a site history brief before design begins
+when_to_use: when researching the historical and contextual background of a site for an architecture project; understanding a neighborhood's architectural character, past uses, and development history; or preparing a site history brief before design begins — oppure quando si ricerca il contesto storico di un sito per un progetto architettonico, si comprende il carattere architettonico di un quartiere, i suoi usi passati e la storia dello sviluppo urbano
 version: 1.0.0
 languages: all
 allowed-tools:

@@ -1,7 +1,7 @@
 ---
 name: Color Palette Generator
 description: Generate harmonious color palettes from text descriptions, moods, images, or reference brands — outputs a self-contained HTML file with swatches, hex codes, and WCAG contrast ratios.
-when_to_use: when generating a color palette for a project, client presentation, or brand system; extracting colors from a reference image or brand; or building a palette around a single anchor color
+when_to_use: when generating a color palette for a project, client presentation, or brand system; extracting colors from a reference image or brand; or building a palette around a single anchor color — oppure quando si crea una palette colori per un progetto o presentazione cliente, si estraggono colori da un'immagine o brand di riferimento, o si costruisce una palette attorno a un colore base
 version: 1.0.0
 languages: all
 allowed-tools:

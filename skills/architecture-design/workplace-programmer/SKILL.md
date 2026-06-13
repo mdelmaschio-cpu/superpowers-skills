@@ -1,7 +1,7 @@
 ---
 name: Workplace Space Programmer
 description: Program office spaces through conversation — custom area splits, seat counts, conference room schedules, and support spaces for workplace strategy projects.
-when_to_use: when programming an office space for a workplace strategy project; calculating area splits across work, meeting, common, circulation, and BOH zones; determining seat counts and conference room ratios; or generating a workplace program report
+when_to_use: when programming an office space for a workplace strategy project; calculating area splits across work, meeting, common, circulation, and BOH zones; determining seat counts and conference room ratios; or generating a workplace program report — oppure quando si programma uno spazio ufficio per una strategia workplace, si calcolano le suddivisioni di area tra zone di lavoro, sale riunioni, spazi comuni e BOH, si determinano posti a sedere e rapporti sale riunioni, o si genera un programma spaziale
 version: 1.0.0
 languages: all
 allowed-tools:

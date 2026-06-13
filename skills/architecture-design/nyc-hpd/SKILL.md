@@ -1,7 +1,7 @@
 ---
 name: NYC HPD Violations Lookup
 description: Look up HPD violations, complaints, and building registration for NYC residential buildings.
-when_to_use: when researching housing violations, tenant complaints, or building registration for NYC residential properties; performing due diligence on residential buildings; or checking if a building has outstanding housing violations before purchase or renovation
+when_to_use: when researching housing violations, tenant complaints, or building registration for NYC residential properties; performing due diligence on residential buildings; or checking if a building has outstanding housing violations before purchase or renovation — oppure quando si ricercano violazioni residenziali, reclami degli inquilini o registrazione dell'edificio per proprietà residenziali a NYC, o si esegue due diligence su edifici residenziali
 version: 1.0.0
 languages: all
 allowed-tools:

@@ -1,7 +1,7 @@
 ---
 name: Project Decision Records
 description: Capture architecture project decisions as numbered, persistent ADR-style records — one file per decision, with options considered, reasoning, consequences, and supersession tracking.
-when_to_use: when recording a project decision for a client, documenting why a design choice was made, superseding a previous decision, or reviewing all decisions made on a project
+when_to_use: when recording a project decision for a client, documenting why a design choice was made, superseding a previous decision, or reviewing all decisions made on a project — oppure quando si registra una decisione di progetto, si documenta perché è stata fatta una scelta progettuale, si annulla una decisione precedente, o si consultano tutte le decisioni prese
 version: 1.0.0
 languages: all
 allowed-tools:

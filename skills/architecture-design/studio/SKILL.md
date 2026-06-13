@@ -1,7 +1,7 @@
 ---
 name: Studio Dispatcher
 description: Smart router for architecture and AEC skills — describe your task and get routed to the right agent or skill without knowing which one to use.
-when_to_use: when unsure which architecture skill to use, wanting to be automatically routed to the right agent based on a task description, or needing a starting point for any architecture or AEC workflow
+when_to_use: when unsure which architecture skill to use, wanting to be automatically routed to the right agent based on a task description, or needing a starting point for any architecture or AEC workflow — oppure quando non si sa quale skill di architettura usare, si vuole essere instradati automaticamente, o la richiesta riguarda: sito, clima, zoning, NYC, programmazione spaziale, arredamento, FF&E, EPD, sostenibilità, presentazione, specifiche tecniche, decisioni di progetto
 version: 1.0.0
 languages: all
 allowed-tools:

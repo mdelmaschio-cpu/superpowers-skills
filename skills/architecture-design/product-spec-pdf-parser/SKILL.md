@@ -1,7 +1,7 @@
 ---
 name: Product Spec PDF Parser
 description: Extract structured FF&E product data from PDF price books, fact sheets, and spec sheets into the 33-column master schema.
-when_to_use: when extracting product specifications from PDF catalogs, price books, manufacturer fact sheets, or multi-page spec sheets for furniture or fixtures
+when_to_use: when extracting product specifications from PDF catalogs, price books, manufacturer fact sheets, or multi-page spec sheets for furniture or fixtures — oppure quando si estraggono specifiche prodotto da cataloghi PDF, listini prezzi, schede tecniche produttore, o schede specifiche multipagina per arredamenti o fixtures
 version: 1.0.0
 languages: all
 allowed-tools:

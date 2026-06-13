@@ -1,7 +1,7 @@
 ---
 name: NYC Property Report
 description: Comprehensive property research report across six NYC data domains — landmarks, DOB permits, violations, ACRIS transactions, HPD housing data, and BSA variances.
-when_to_use: when performing complete due diligence on a NYC property for architecture or real estate; needing a single comprehensive report covering all public data about a building; or starting an architecture project and needing a full property data briefing
+when_to_use: when performing complete due diligence on a NYC property for architecture or real estate; needing a single comprehensive report covering all public data about a building; or starting an architecture project and needing a full property data briefing — oppure quando si esegue una due diligence completa su una proprietà a NYC, si ha bisogno di un report comprensivo che copra tutti i dati pubblici di un edificio, o si avvia un progetto architettonico a New York
 version: 1.0.0
 languages: all
 allowed-tools:

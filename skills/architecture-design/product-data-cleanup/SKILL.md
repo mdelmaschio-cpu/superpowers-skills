@@ -1,7 +1,7 @@
 ---
 name: Product Data Cleanup
 description: Normalize messy FF&E schedules — standardize casing, dimensions, units, languages, materials, and formatting.
-when_to_use: when an FF&E schedule has inconsistent casing, mixed units, merged dimension columns, non-English category names, abbreviated material terms, or duplicate entries that need normalization before use
+when_to_use: when an FF&E schedule has inconsistent casing, mixed units, merged dimension columns, non-English category names, abbreviated material terms, or duplicate entries that need normalization before use — oppure quando un computo FF&E ha nomenclatura inconsistente, unità miste, colonne dimensioni combinate, abbreviazioni materiali, o duplicati da normalizzare
 version: 1.0.0
 languages: all
 allowed-tools:

@@ -1,7 +1,7 @@
 ---
 name: EPD Parser
 description: Extract environmental product declaration data from PDF files into a standardized 42-column schema covering GWP, ODP, AP, EP, POCP, and resource use metrics.
-when_to_use: when parsing Environmental Product Declaration PDFs to extract life cycle impact data, processing EPDs for LEED documentation, or building a materials database with environmental impact metrics from multiple EPDs
+when_to_use: when parsing Environmental Product Declaration PDFs to extract life cycle impact data, processing EPDs for LEED documentation, or building a materials database with environmental impact metrics from multiple EPDs — oppure quando si analizzano PDF di Dichiarazioni Ambientali di Prodotto (EPD) per estrarre dati LCA, si elaborano EPD per la documentazione LEED, o si costruisce un database materiali con metriche di impatto ambientale
 version: 1.0.0
 languages: all
 allowed-tools:

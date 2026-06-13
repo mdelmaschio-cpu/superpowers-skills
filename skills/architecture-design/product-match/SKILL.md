@@ -1,7 +1,7 @@
 ---
 name: Product Match
 description: Find similar products to a given item by name, image, description, or URL — scored for visual, material, price, and dimension similarity.
-when_to_use: when looking for alternatives to a specific product, finding budget versions of a high-end item, or sourcing contract-grade equivalents of residential furniture
+when_to_use: when looking for alternatives to a specific product, finding budget versions of a high-end item, or sourcing contract-grade equivalents of residential furniture — oppure quando si cercano alternative a un prodotto specifico, si trovano versioni economiche di un articolo di lusso, o si ricercano equivalenti contract-grade di arredamento residenziale
 version: 1.0.0
 languages: all
 allowed-tools:

@@ -1,7 +1,7 @@
 ---
 name: IBC Occupancy Load Calculator
 description: Calculate occupancy loads for building code compliance using IBC Table 1004.5 — assigns use types, applies gross/net factors, computes egress requirements, and exports to markdown/CSV.
-when_to_use: when calculating occupancy loads for building code compliance, determining minimum number of exits and egress widths, classifying building areas by IBC use type, or verifying that a workplace program meets code occupancy requirements
+when_to_use: when calculating occupancy loads for building code compliance, determining minimum number of exits and egress widths, classifying building areas by IBC use type, or verifying that a workplace program meets code occupancy requirements — oppure quando si calcolano i carichi di occupazione per la conformità al codice edilizio, si determina il numero minimo di uscite e larghezze di esodo, si classificano le aree per tipo d'uso IBC
 version: 1.0.0
 languages: all
 allowed-tools:

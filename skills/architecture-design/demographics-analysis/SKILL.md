@@ -1,7 +1,7 @@
 ---
 name: Demographics and Market Analysis
 description: Research population, income, housing, age, and employment data for any site using Census Bureau and governmental sources, benchmarked against metro and national averages.
-when_to_use: when performing demographics and market analysis for an architecture or planning project; researching population trends, income levels, housing characteristics, or employment data for a neighborhood; or compiling a market context brief
+when_to_use: when performing demographics and market analysis for an architecture or planning project; researching population trends, income levels, housing characteristics, or employment data for a neighborhood; or compiling a market context brief — oppure quando si analizzano dati demografici e di mercato per un progetto architettonico o urbanistico, si ricercano tendenze demografiche, redditi, caratteristiche abitative o dati occupazionali per un quartiere
 version: 1.0.0
 languages: all
 allowed-tools:
