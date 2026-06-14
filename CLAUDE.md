@@ -15,9 +15,27 @@ superpowers-skills/
 ├── LICENSE                    # MIT, Copyright 2025 Jesse Vincent
 └── skills/
     ├── REQUESTS.md            # Wishlist: skills to create next
-    ├── architecture/          # Architecture & system design skills (1 skill)
-    │   ├── ABOUT.md           # Attribution for derived skills
+    ├── architecture/          # System design patterns (1 skill) — from Microsoft Amplifier
+    │   ├── ABOUT.md
     │   └── preserving-productive-tensions/
+    ├── architecture-design/   # Architecture, real estate & product data skills (39 skills) — from AlpacaLabsLLC
+    │   ├── ABOUT.md
+    │   ├── studio/            # Dispatcher for all architecture skills
+    │   ├── skills-menu/       # List/navigate all available skills
+    │   ├── project-dossier/   # Project dossier management
+    │   ├── decision/          # Document design decisions
+    │   ├── nyc-*/             # NYC due diligence (landmarks, DOB permits/violations, ACRIS, HPD, BSA, property-report)
+    │   ├── environmental-analysis/ site-history/ mobility-analysis/ demographics-analysis/
+    │   ├── zoning-analysis-nyc/ zoning-envelope/
+    │   ├── workplace-programmer/ occupancy-calculator/
+    │   ├── spec-writer/       # Technical product specifications
+    │   ├── epd-*/             # Sustainability: EPD parse/research/compare/to-spec
+    │   ├── product-*/         # Materials research: research/spec-bulk-fetch/cleanup/spec-pdf-parser/
+    │   │                      #   image-processor/data-import/enrich/match/pair
+    │   ├── master-schedule/   # Master materials schedule
+    │   ├── csv-to-sif/ sif-to-csv/
+    │   ├── slide-deck-generator/ color-palette-generator/ resize-images/
+    │   └── ...
     ├── collaboration/         # Team collaboration & git workflow skills (10 skills)
     │   ├── brainstorming/
     │   ├── dispatching-parallel-agents/
@@ -33,6 +51,23 @@ superpowers-skills/
     │   ├── subagent-driven-development/
     │   ├── using-git-worktrees/
     │   └── writing-plans/
+    ├── context-engineering/   # LLM context & agent system skills (15 skills) — from muratcankoylan
+    │   ├── ABOUT.md
+    │   ├── context-fundamentals/   # Context window mechanics
+    │   ├── context-degradation/    # Lost-in-middle, poisoning, distraction
+    │   ├── context-compression/    # Compacting long agent sessions
+    │   ├── context-optimization/   # Token budgeting, KV-cache, partitioning
+    │   ├── multi-agent-patterns/   # Supervisor, swarm, hierarchical topologies
+    │   ├── tool-design/            # Tool descriptions, schemas, MCP namespacing
+    │   ├── filesystem-context/     # Files as overflow context / durable scratchpad
+    │   ├── hosted-agents/          # Remote sandboxed agent infrastructure
+    │   ├── latent-briefing/        # KV-cache memory sharing between agents
+    │   ├── memory-systems/         # Cross-session memory: Mem0, Zep, Letta, Cognee
+    │   ├── evaluation/             # Deterministic checks, rubrics, quality gates
+    │   ├── advanced-evaluation/    # LLM-as-judge, pairwise comparison, bias
+    │   ├── harness-engineering/    # Autonomous agent control loops, rollback
+    │   ├── project-development/    # LLM project architecture, cost estimation
+    │   └── bdi-mental-states/      # BDI cognitive architecture with RDF semantics
     ├── debugging/             # Debugging & troubleshooting skills (4 skills)
     │   ├── defense-in-depth/
     │   ├── root-cause-tracing/
@@ -44,7 +79,7 @@ superpowers-skills/
     │   ├── sharing-skills/
     │   ├── testing-skills-with-subagents/
     │   └── writing-skills/
-    ├── problem-solving/       # Reasoning & decision-making strategies (6 skills)
+    ├── problem-solving/       # Reasoning & decision-making strategies (6 skills) — from Microsoft Amplifier
     │   ├── ABOUT.md
     │   ├── collision-zone-thinking/
     │   ├── inversion-exercise/
@@ -52,7 +87,7 @@ superpowers-skills/
     │   ├── scale-game/
     │   ├── simplification-cascades/
     │   └── when-stuck/
-    ├── research/              # Investigation & knowledge synthesis (1 skill)
+    ├── research/              # Investigation & knowledge synthesis (1 skill) — from Microsoft Amplifier
     │   ├── ABOUT.md
     │   └── tracing-knowledge-lineages/
     ├── testing/               # Test strategies & anti-patterns (3 skills)
@@ -87,7 +122,9 @@ Note: `when_to_use` (not `description`) is the primary field the model uses for 
 | Category | Purpose | Count |
 |----------|---------|-------|
 | `architecture/` | System design, structural patterns, trade-off analysis | 1 |
+| `architecture-design/` | Architecture practice, NYC due diligence, sustainability (EPD), materials research, product data, presentations | 39 |
 | `collaboration/` | Team workflows, git branching, communication, handoff patterns | 10 |
+| `context-engineering/` | LLM context management, multi-agent patterns, memory systems, evaluation, harness engineering | 15 |
 | `debugging/` | Diagnosing failures, root cause analysis, error patterns | 4 |
 | `meta/` | Skills about working with Claude Code skills themselves | 5 |
 | `problem-solving/` | General reasoning, ideation, and decision-making strategies | 6 |
@@ -154,6 +191,10 @@ This skill was derived from [Source Project](URL).
 ```
 
 Skills in `problem-solving/`, `architecture/`, and `research/` are derived from the [Microsoft Amplifier](https://github.com/microsoft/amplifier) project.
+
+Skills in `architecture-design/` are derived from [skills-for-architects](https://github.com/AlpacaLabsLLC/skills-for-architects) by AlpacaLabsLLC (imported 2026-06-12).
+
+Skills in `context-engineering/` are derived from [Agent-Skills-for-Context-Engineering](https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering) by muratcankoylan (imported 2026-06-12).
 
 ## TDD-Based Skill Development
 
