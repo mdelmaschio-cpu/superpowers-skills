@@ -1,7 +1,7 @@
 ---
 name: CSV to SIF
 description: Convert a product list from CSV, Excel, or Google Sheets into a SIF (Standard Interchange Format) file for dealer and procurement systems.
-when_to_use: when exporting an FF&E schedule to a dealer system like Hedberg, CAP, Cyncly Worksheet, CET/Configura, or Design Manager
+when_to_use: when exporting an FF&E schedule to a dealer system like Hedberg, CAP, Cyncly Worksheet, CET/Configura, or Design Manager — oppure quando si esporta un computo FF&E verso un sistema dealer o di procurement, si converte un file CSV in formato SIF per Hedberg, CAP o Cyncly
 version: 1.0.0
 languages: all
 allowed-tools:

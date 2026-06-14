@@ -1,7 +1,7 @@
 ---
 name: NYC Landmarks Checker
 description: Check if a NYC building is landmarked or in a historic district using LPC data.
-when_to_use: when checking if a NYC property is individually landmarked, lies within a historic district, or requires an LPC Certificate of Appropriateness for exterior alterations
+when_to_use: when checking if a NYC property is individually landmarked, lies within a historic district, or requires an LPC Certificate of Appropriateness for exterior alterations — oppure quando si verifica se una proprietà a NYC è un landmark individuale, si trova in un distretto storico, o richiede un Certificate of Appropriateness LPC per modifiche esterne
 version: 1.0.0
 languages: all
 allowed-tools:

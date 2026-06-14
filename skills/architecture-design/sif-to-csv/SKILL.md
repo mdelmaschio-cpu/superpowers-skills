@@ -1,7 +1,7 @@
 ---
 name: SIF to CSV
 description: Convert a SIF file from a dealer or procurement system into a clean, human-readable CSV or Google Sheet.
-when_to_use: when receiving a SIF file from a dealer or procurement system and needing to convert it to a spreadsheet for review, pricing analysis, or schedule integration
+when_to_use: when receiving a SIF file from a dealer or procurement system and needing to convert it to a spreadsheet for review, pricing analysis, or schedule integration — oppure quando si riceve un file SIF da un sistema dealer o di procurement e lo si vuole convertire in foglio di calcolo per revisione, analisi prezzi o integrazione nel computo
 version: 1.0.0
 languages: all
 allowed-tools:

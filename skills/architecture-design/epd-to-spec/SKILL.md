@@ -1,7 +1,7 @@
 ---
 name: EPD to Specification
 description: Generate CSI-formatted specification sections requiring Environmental Product Declarations and maximum GWP thresholds for construction materials.
-when_to_use: when writing specifications that require EPD submittals, adding GWP threshold requirements to material specifications, or preparing LEED MRc2 specification language for a construction project
+when_to_use: when writing specifications that require EPD submittals, adding GWP threshold requirements to material specifications, or preparing LEED MRc2 specification language for a construction project — oppure quando si scrivono specifiche che richiedono EPD in gara, si aggiungono soglie GWP alle specifiche materiali, o si prepara il linguaggio di specifica LEED MRc2
 version: 1.0.0
 languages: all
 allowed-tools:

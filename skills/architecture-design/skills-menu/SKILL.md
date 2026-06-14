@@ -1,7 +1,7 @@
 ---
 name: Architecture Skills Menu
 description: Display the full menu of 39 architecture and AEC skills and 7 agents available in the studio.
-when_to_use: when wanting to see all available architecture skills, getting an overview of what the studio can do, or finding a specific skill by category
+when_to_use: when wanting to see all available architecture skills, getting an overview of what the studio can do, or finding a specific skill by category — oppure quando si vuole vedere tutte le skill di architettura disponibili, avere una panoramica delle capacità dello studio, o trovare una skill specifica per categoria
 version: 1.0.0
 languages: all
 allowed-tools:

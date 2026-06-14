@@ -1,7 +1,7 @@
 ---
 name: NYC ACRIS Property Records
 description: Look up ACRIS property transaction records for any NYC property — deeds, mortgages, satisfactions, liens, and ownership history.
-when_to_use: when researching who owns a NYC building, when it last sold or for how much, whether there are mortgages or liens against it, or reviewing the full transaction history of a NYC property; for permits or violations use the DOB skills instead
+when_to_use: when researching who owns a NYC building, when it last sold or for how much, whether there are mortgages or liens against it, or reviewing the full transaction history of a NYC property; for permits or violations use the DOB skills instead — oppure quando si ricerca chi possiede un edificio a NYC, quando è stato venduto o per quanto, se ci sono mutui o gravami, o si rivede la cronologia transazionale di una proprietà
 version: 1.0.0
 languages: all
 allowed-tools:

@@ -1,7 +1,7 @@
 ---
 name: Product Enrich
 description: Auto-tag furniture products with category, subcategory, primary color, material, and style descriptors using AI inference.
-when_to_use: when a product list lacks category tags, color data, material descriptions, or style classifications needed for filtering, scheduling, or presentation
+when_to_use: when a product list lacks category tags, color data, material descriptions, or style classifications needed for filtering, scheduling, or presentation — oppure quando una lista prodotti manca di categorie, dati colore, descrizioni materiali o classificazioni stilistiche necessarie per filtraggio, schedulazione o presentazione
 version: 1.0.0
 languages: all
 allowed-tools:

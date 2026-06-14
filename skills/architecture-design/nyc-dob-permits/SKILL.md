@@ -1,7 +1,7 @@
 ---
 name: NYC DOB Permits Lookup
 description: Search Department of Buildings permit and job filing records for any NYC property using address, BBL, or BIN.
-when_to_use: when researching construction permits, job filings, and building alteration history for a NYC property; understanding what work has been done on a building; or performing due diligence on a NYC real estate or architecture project
+when_to_use: when researching construction permits, job filings, and building alteration history for a NYC property; understanding what work has been done on a building; or performing due diligence on a NYC real estate or architecture project — oppure quando si ricercano permessi di costruzione, pratiche edilizie e storia delle alterazioni per una proprietà a NYC, o si esegue due diligence su un progetto immobiliare
 version: 1.0.0
 languages: all
 allowed-tools:

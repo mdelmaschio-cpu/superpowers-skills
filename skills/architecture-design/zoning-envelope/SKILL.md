@@ -1,7 +1,7 @@
 ---
 name: 3D Zoning Envelope Viewer
 description: Generate an interactive 3D axonometric zoning envelope viewer as a self-contained HTML file using Three.js, from a zoning analysis report produced by /zoning-analysis-nyc.
-when_to_use: when visualizing the maximum buildable envelope for a NYC property in 3D; presenting zoning analysis findings to clients or stakeholders; or generating an interactive HTML model from zoning data
+when_to_use: when visualizing the maximum buildable envelope for a NYC property in 3D; presenting zoning analysis findings to clients or stakeholders; or generating an interactive HTML model from zoning data — oppure quando si vuole visualizzare in 3D l'inviluppo massimo edificabile per una proprietà a NYC, si presentano i risultati dell'analisi urbanistica a clienti o stakeholder, o si genera un modello HTML interattivo dai dati di zoning
 version: 1.0.0
 languages: all
 allowed-tools:

@@ -1,7 +1,7 @@
 ---
 name: Product Data Import
 description: Convert raw product notes, CSVs, or pasted lists into a structured FF&E schedule compatible with the 33-column master schema.
-when_to_use: when importing unstructured product information into a schedule, converting notes or lists into a formatted FF&E table, or building a new schedule from scratch from raw designer input
+when_to_use: when importing unstructured product information into a schedule, converting notes or lists into a formatted FF&E table, or building a new schedule from scratch from raw designer input — oppure quando si importano informazioni prodotto non strutturate in un computo, si convertono note o liste in una tabella FF&E formattata, o si costruisce un nuovo computo da zero
 version: 1.0.0
 languages: all
 allowed-tools:

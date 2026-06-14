@@ -1,7 +1,7 @@
 ---
 name: Resize Images
 description: Batch-resize photos for web, social media, slides, and print — organized into dedicated output subfolders using Python/Pillow.
-when_to_use: when preparing project photos for multiple output destinations, resizing images for presentations or social posts, or exporting architecture photos to print-ready DPI and dimensions
+when_to_use: when preparing project photos for multiple output destinations, resizing images for presentations or social posts, or exporting architecture photos to print-ready DPI and dimensions — oppure quando si preparano foto di progetto per più destinazioni di output, si ridimensionano immagini per presentazioni o post social, o si esportano foto architettoniche in formato stampa ad alta risoluzione
 version: 1.0.0
 languages: all
 allowed-tools:

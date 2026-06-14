@@ -1,7 +1,7 @@
 ---
 name: Product Spec Bulk Fetch
 description: Batch-extract FF&E product data from a list of URLs into a standardized 33-column master schema.
-when_to_use: when extracting furniture or product specifications from multiple URLs at once, bulk-fetching product data from manufacturer or dealer pages, or populating a master schedule from a list of product links
+when_to_use: when extracting furniture or product specifications from multiple URLs at once, bulk-fetching product data from manufacturer or dealer pages, or populating a master schedule from a list of product links — oppure quando si estraggono specifiche di arredamento da più URL contemporaneamente, si recuperano in batch dati prodotto da pagine produttori o dealer, o si popola un computo da una lista di link
 version: 1.0.0
 languages: all
 allowed-tools:
