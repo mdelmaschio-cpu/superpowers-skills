@@ -80,11 +80,13 @@ superpowers-skills/
     │   │   cantonal-zoning-ch/, minergie-energy/, npk-leistungsverzeichnis/, sia-102-honorar/,
     │   │   sia-118-contract/, sia-competitions/, sia-norms/, sia-phases/, suva-sicherheit/,
     │   │   vkf-brandschutz/
-    ├── swiss-law/             # Swiss law for architects/construction managers (9 skills)
+    ├── swiss-law/             # Swiss law for architects/construction managers (14 skills)
     │   ├── ABOUT.md           # contract-review adapted from evolsb/claude-legal-skill; rest written from scratch
-    │   ├── contract-review/, swiss-construction-law/, swiss-corporate-law/,
-    │   │   swiss-data-protection/, swiss-debt-collection/, swiss-employment-law/,
-    │   │   swiss-ip-architects/, swiss-procurement-law/, swiss-tenancy-law/
+    │   ├── contract-review/, swiss-construction-guarantees/, swiss-construction-law/,
+    │   │   swiss-corporate-law/, swiss-data-protection/, swiss-debt-collection/,
+    │   │   swiss-employment-law/, swiss-ip-architects/, swiss-procurement-law/,
+    │   │   swiss-professional-liability/, swiss-property-law/, swiss-real-estate-transaction/,
+    │   │   swiss-tax-construction/, swiss-tenancy-law/
     ├── testing/               # Test strategies & anti-patterns (3 skills)
     │   ├── condition-based-waiting/
     │   ├── test-driven-development/
@@ -95,7 +97,7 @@ superpowers-skills/
         └── skill-run          # Shell script: invoke a skill by name
 ```
 
-Total: **111 skills** across 12 categories.
+Total: **116 skills** across 12 categories.
 
 ## How Skills Work
 
@@ -127,11 +129,11 @@ Note: `when_to_use` (not `description`) is the primary field the model uses for 
 | `problem-solving/` | General reasoning, ideation, and decision-making strategies | 6 |
 | `research/` | Investigation, information synthesis, knowledge lineage | 1 |
 | `swiss-architecture/` | Swiss architectural practice: SIA norms, BKP costing, MINERGIE, permits, Bauleitung | 14 |
-| `swiss-law/` | Swiss law for architects/construction managers: OR/CO, nLPD, SchKG, IVöB, URG | 9 |
+| `swiss-law/` | Swiss law for architects/construction managers: OR/CO, ZGB, nLPD, SchKG, IVöB, URG, tax | 14 |
 | `testing/` | Test strategies, TDD, flaky tests, anti-patterns | 3 |
 | `using-skills/` | How to write, install, and invoke Claude Code skills | 1 |
 
-**Total: 111 skills**
+**Total: 116 skills**
 
 ## Key Conventions for Skill Authoring
 
