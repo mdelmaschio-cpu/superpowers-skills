@@ -124,6 +124,6 @@ modificare le conclusioni.
 
 ## Riferimenti incrociati
 
-- `skills/legal-svizzera/analisi-contratto-co` — per la fase di analisi su questioni contrattuali
-- `skills/legal-svizzera/ricerca-giurisprudenza-svizzera` — per trovare BGE/ATF da citare nell'analisi
-- `skills/legal-svizzera/due-diligence-legale-svizzera` — quando il parere è richiesto nel contesto di una DD
+- `skills/legal/analisi-contratto-co` — per la fase di analisi su questioni contrattuali
+- `skills/legal/ricerca-giurisprudenza-svizzera` — per trovare BGE/ATF da citare nell'analisi
+- `skills/legal/due-diligence-legale-svizzera` — quando il parere è richiesto nel contesto di una DD
