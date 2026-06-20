@@ -103,5 +103,5 @@ Dopo aver redatto la clausola, verificare:
 
 ## Riferimenti incrociati
 
-- `skills/legal-svizzera/analisi-contratto-co` — per verificare una clausola esistente prima di modificarla
-- `skills/legal-svizzera/parere-legale` — per documentare le scelte redazionali con motivazione giuridica
+- `skills/legal/analisi-contratto-co` — per verificare una clausola esistente prima di modificarla
+- `skills/legal/parere-legale` — per documentare le scelte redazionali con motivazione giuridica

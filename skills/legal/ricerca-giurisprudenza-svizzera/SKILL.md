@@ -118,5 +118,5 @@ PUNTI APERTI / CONTROVERSIE DOTTRINALI: [se esistono]
 
 ## Riferimenti incrociati
 
-- `skills/legal-svizzera/parere-legale` — per inserire correttamente la giurisprudenza trovata in un parere
-- `skills/legal-svizzera/analisi-contratto-co` — quando la ricerca serve a valutare la validità di una clausola
+- `skills/legal/parere-legale` — per inserire correttamente la giurisprudenza trovata in un parere
+- `skills/legal/analisi-contratto-co` — quando la ricerca serve a valutare la validità di una clausola
