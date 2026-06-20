@@ -14,7 +14,7 @@ except ImportError:  # pragma: no cover
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PDF_PATH = ROOT / "references" / "fedlex-rs-220-co-20260101-it.pdf"
+PDF_PATH = ROOT / "references" / "fedlex-rs-220-co-latest-it.pdf"
 
 
 def normalize(text: str) -> str:

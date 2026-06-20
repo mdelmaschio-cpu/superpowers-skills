@@ -16,7 +16,7 @@ Questo skill legge il PDF Fedlex ufficiale (RS 220, versione 2026-01-01, 538 pag
 
 Usare il PDF Fedlex incluso nel repository:
 
-`references/fedlex-rs-220-co-20260101-it.pdf`
+`references/fedlex-rs-220-co-latest-it.pdf`
 
 Metadati:
 - RS/SR: 220
