@@ -124,6 +124,8 @@ modificare le conclusioni.
 
 ## Riferimenti incrociati
 
+- `skills/legal/codice-civile-svizzero` — per questioni di persone, famiglia, successioni o diritti reali nel parere
+- `skills/legal/legge-esecuzione-fallimento-svizzera` — per pareri su esecuzione, fallimento o sequestro
 - `skills/legal/analisi-contratto-co` — per la fase di analisi su questioni contrattuali
 - `skills/legal/ricerca-giurisprudenza-svizzera` — per trovare BGE/ATF da citare nell'analisi
 - `skills/legal/due-diligence-legale-svizzera` — quando il parere è richiesto nel contesto di una DD

@@ -103,5 +103,8 @@ Dopo aver redatto la clausola, verificare:
 
 ## Riferimenti incrociati
 
+- `skills/legal/codice-civile-svizzero` — per clausole di riserva di proprietà e altri diritti reali (art. 715 CC)
+- `skills/legal/codice-procedura-civile-svizzera` — per clausole di proroga di foro e arbitrato interno (art. 17 CPC)
+- `skills/legal/diritto-internazionale-privato-svizzero` — per clausole di foro, legge applicabile o arbitrato con controparti estere (art. 5 LDIP)
 - `skills/legal/analisi-contratto-co` — per verificare una clausola esistente prima di modificarla
 - `skills/legal/parere-legale` — per documentare le scelte redazionali con motivazione giuridica

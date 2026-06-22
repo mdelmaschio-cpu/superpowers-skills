@@ -118,5 +118,7 @@ PUNTI APERTI / CONTROVERSIE DOTTRINALI: [se esistono]
 
 ## Riferimenti incrociati
 
+- `skills/legal/codice-civile-svizzero` — per la giurisprudenza sulla I sezione di diritto civile (diritti reali, famiglia, successioni)
+- `skills/legal/legge-esecuzione-fallimento-svizzera` — per la giurisprudenza sulla III sezione di diritto civile (esecuzione e fallimenti)
 - `skills/legal/parere-legale` — per inserire correttamente la giurisprudenza trovata in un parere
 - `skills/legal/analisi-contratto-co` — quando la ricerca serve a valutare la validità di una clausola
