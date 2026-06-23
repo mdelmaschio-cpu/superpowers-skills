@@ -135,6 +135,8 @@ La DD legale non è una lettura di documenti — è una ricerca di rischi. Ogni 
 
 ## Riferimenti incrociati
 
+- `skills/legal/codice-civile-svizzero` — per la verifica di immobili e diritti reali (CC art. 655–915)
+- `skills/legal/legge-esecuzione-fallimento-svizzera` — per la verifica di procedure LEF pendenti contro la target
 - `skills/legal/analisi-contratto-co` — per l'analisi approfondita dei contratti chiave individuati in DD
 - `skills/legal/parere-legale` — per il DD report finale o per pareri su rischi specifici identificati
 - `skills/legal/ricerca-giurisprudenza-svizzera` — per ricercare giurisprudenza su rischi specifici emersi

@@ -93,6 +93,8 @@ Termini italiani utili per le ricerche nel PDF:
 
 ## Riferimenti incrociati
 
+- `skills/legal/codice-civile-svizzero` — il CO è il Libro quinto del CC; per persone, famiglia, successioni e diritti reali
+- `skills/legal/legge-esecuzione-fallimento-svizzera` — per l'esecuzione forzata di crediti CO non adempiuti
 - `skills/legal/analisi-contratto-co` — per analisi strutturata di un contratto CO
 - `skills/legal/parere-legale` — per formalizzare la risposta in un parere professionale
 - `skills/legal/ricerca-giurisprudenza-svizzera` — per trovare sentenze BGE/ATF che integrano il testo normativo

@@ -73,14 +73,18 @@ superpowers-skills/
     │   ├── root-cause-tracing/
     │   ├── systematic-debugging/
     │   └── verification-before-completion/
-    ├── legal/                 # Swiss legal practice skills (6 skills)
+    ├── legal/                 # Swiss legal practice skills (10 skills)
     │   ├── ABOUT.md
-    │   ├── swiss-code-obligations/        # Search/cite the Swiss Code of Obligations (CO/OR/RS 220)
-    │   ├── analisi-contratto-co/          # Analyze contracts against CO provisions
-    │   ├── redazione-clausole-co/         # Draft CO-compliant contract clauses
-    │   ├── parere-legale/                 # Structure a formal Swiss legal opinion
-    │   ├── ricerca-giurisprudenza-svizzera/ # Research Swiss case law (BGE/ATF)
-    │   └── due-diligence-legale-svizzera/  # Swiss legal due diligence checklist
+    │   ├── swiss-code-obligations/             # Search/cite Swiss CO (RS 220) from bundled Fedlex PDF
+    │   ├── codice-civile-svizzero/             # Search/cite Swiss CC (RS 210) from bundled Fedlex PDF
+    │   ├── codice-procedura-civile-svizzera/   # Search/cite Swiss CPC (RS 272) from bundled Fedlex PDF
+    │   ├── legge-esecuzione-fallimento-svizzera/ # Search/cite Swiss LEF (RS 281.1) from bundled Fedlex PDF
+    │   ├── diritto-internazionale-privato-svizzero/ # Search/cite Swiss LDIP (RS 291) from bundled Fedlex PDF
+    │   ├── analisi-contratto-co/               # Contract analysis under the Swiss CO
+    │   ├── redazione-clausole-co/              # Drafting CO-compliant contract clauses
+    │   ├── parere-legale/                      # Formal Swiss legal opinion structure
+    │   ├── ricerca-giurisprudenza-svizzera/    # Swiss case law (BGE/ATF) research
+    │   └── due-diligence-legale-svizzera/      # Legal due diligence under Swiss law
     ├── meta/                  # Skills about using/managing skills (5 skills)
     │   ├── gardening-skills-wiki/  # Wiki health check scripts
     │   ├── pulling-updates-from-skills-repository/
@@ -134,7 +138,7 @@ Note: `when_to_use` (not `description`) is the primary field the model uses for 
 | `collaboration/` | Team workflows, git branching, communication, handoff patterns | 10 |
 | `context-engineering/` | LLM context management, multi-agent patterns, memory systems, evaluation, harness engineering | 15 |
 | `debugging/` | Diagnosing failures, root cause analysis, error patterns | 4 |
-| `legal/` | Swiss legal practice: CO statutory research, contract analysis/drafting, legal opinions, case-law research, due diligence | 6 |
+| `legal/` | Swiss legal practice: CO/CC/CPC/LEF/LDIP statutory research, contract analysis/drafting, legal opinions, case law, due diligence | 10 |
 | `meta/` | Skills about working with Claude Code skills themselves | 5 |
 | `problem-solving/` | General reasoning, ideation, and decision-making strategies | 6 |
 | `research/` | Investigation, information synthesis, knowledge lineage | 1 |

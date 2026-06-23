@@ -100,6 +100,9 @@ Analisi:
 
 ## Riferimenti incrociati
 
+- `skills/legal/codice-civile-svizzero` — per la capacità delle parti (art. 12–19 CC) e i diritti reali (art. 657 CC)
+- `skills/legal/codice-procedura-civile-svizzera` — per la validità di clausole di foro e arbitrato interno (art. 17, 354 CPC)
+- `skills/legal/diritto-internazionale-privato-svizzero` — per clausole con elementi internazionali (art. 178, 18 LDIP)
 - `skills/legal/redazione-clausole-co` — per dopo l'analisi, quando redigere una versione corretta
 - `skills/legal/parere-legale` — per formalizzare l'analisi in un parere strutturato
 - `skills/legal/due-diligence-legale-svizzera` — per analisi massiva di più contratti in DD
