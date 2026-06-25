@@ -102,6 +102,13 @@ superpowers-skills/
     ├── research/              # Investigation & knowledge synthesis (1 skill) — from Microsoft Amplifier
     │   ├── ABOUT.md
     │   └── tracing-knowledge-lineages/
+    ├── security/              # Defensive security: IOC triage, BEC detection, vuln scoring, IR playbooks, Linux hardening (5 skills) — from Anthropic-Cybersecurity-Skills
+    │   ├── ABOUT.md
+    │   ├── analyzing-indicators-of-compromise/             # Classify/defang/enrich IOCs with threat intel for block/monitor/investigate decisions
+    │   ├── detecting-business-email-compromise/            # Detect BEC indicators in email headers/content (impersonation, auth failures, urgency)
+    │   ├── hardening-linux-endpoint-with-cis-benchmark/    # Harden Linux endpoints against CIS Benchmark controls, verify with OpenSCAP
+    │   ├── prioritizing-vulnerabilities-with-cvss-scoring/ # CVSS v3.1 scoring + EPSS/CISA KEV to risk-rank vulnerabilities
+    │   └── triaging-security-incident-with-ir-playbook/    # Classify alerts by type/severity, select matching IR playbook
     ├── testing/               # Test strategies & anti-patterns (3 skills)
     │   ├── condition-based-waiting/
     │   ├── test-driven-development/
@@ -142,6 +149,7 @@ Note: `when_to_use` (not `description`) is the primary field the model uses for 
 | `meta/` | Skills about working with Claude Code skills themselves | 5 |
 | `problem-solving/` | General reasoning, ideation, and decision-making strategies | 6 |
 | `research/` | Investigation, information synthesis, knowledge lineage | 1 |
+| `security/` | Defensive security: IOC analysis, BEC detection, vulnerability prioritization, incident triage, Linux hardening | 5 |
 | `testing/` | Test strategies, TDD, flaky tests, anti-patterns | 3 |
 | `using-skills/` | How to write, install, and invoke Claude Code skills | 1 |
 
@@ -208,6 +216,8 @@ Skills in `problem-solving/`, `architecture/`, and `research/` are derived from 
 Skills in `architecture-design/` are derived from [skills-for-architects](https://github.com/AlpacaLabsLLC/skills-for-architects) by AlpacaLabsLLC (imported 2026-06-12).
 
 Skills in `context-engineering/` are derived from [Agent-Skills-for-Context-Engineering](https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering) by muratcankoylan (imported 2026-06-12).
+
+Skills in `security/` are derived from [Anthropic-Cybersecurity-Skills](https://github.com/mukul975/Anthropic-Cybersecurity-Skills) by mukul975 (imported 2026-06-20), selecting 5 defensive/blue-team skills from the source's larger library.
 
 ## TDD-Based Skill Development
 
