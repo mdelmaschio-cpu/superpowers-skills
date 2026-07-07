@@ -6,6 +6,8 @@ Community-editable skills library for Claude Code's superpowers plugin. Automati
 
 A shared, community-maintained library of Claude Code skills organized by functional category. Users fork the repo, add new skills or improve existing ones, and contribute back via PRs. Skills are markdown files that give Claude structured guidance for specific task types.
 
+**This repo does not include the superpowers "core" skills** (brainstorming, dispatching-parallel-agents, executing-plans, finishing-a-development-branch, receiving-code-review, requesting-code-review, subagent-driven-development, systematic-debugging, test-driven-development, using-git-worktrees, verification-before-completion, writing-plans, writing-skills). Those ship bundled with the `superpowers` plugin itself, are eval-gated there, and are always available regardless of whether this repo is installed. A prior snapshot of this repo had duplicated stale copies of them under `collaboration/`, `debugging/`, `testing/`, and `meta/` — they were removed to avoid two divergent sources of truth for the same skill name.
+
 ## Structure
 
 ```
@@ -36,21 +38,12 @@ superpowers-skills/
     │   ├── csv-to-sif/ sif-to-csv/
     │   ├── slide-deck-generator/ color-palette-generator/ resize-images/
     │   └── ...
-    ├── collaboration/         # Team collaboration & git workflow skills (10 skills)
-    │   ├── brainstorming/
-    │   ├── dispatching-parallel-agents/
-    │   ├── executing-plans/
-    │   ├── finishing-a-development-branch/
-    │   ├── receiving-code-review/
-    │   ├── remembering-conversations/  # Only skill with executable code
-    │   │   ├── SKILL.md
-    │   │   ├── INDEXING.md
-    │   │   ├── DEPLOYMENT.md
-    │   │   └── tool/          # Node.js/TypeScript source + CLI scripts
-    │   ├── requesting-code-review/
-    │   ├── subagent-driven-development/
-    │   ├── using-git-worktrees/
-    │   └── writing-plans/
+    ├── collaboration/         # Team collaboration & git workflow skills (1 skill)
+    │   └── remembering-conversations/  # Only skill with executable code
+    │       ├── SKILL.md
+    │       ├── INDEXING.md
+    │       ├── DEPLOYMENT.md
+    │       └── tool/          # Node.js/TypeScript source + CLI scripts
     ├── context-engineering/   # LLM context & agent system skills (15 skills) — from muratcankoylan
     │   ├── ABOUT.md
     │   ├── context-fundamentals/   # Context window mechanics
@@ -68,11 +61,9 @@ superpowers-skills/
     │   ├── harness-engineering/    # Autonomous agent control loops, rollback
     │   ├── project-development/    # LLM project architecture, cost estimation
     │   └── bdi-mental-states/      # BDI cognitive architecture with RDF semantics
-    ├── debugging/             # Debugging & troubleshooting skills (4 skills)
+    ├── debugging/             # Debugging & troubleshooting skills (2 skills)
     │   ├── defense-in-depth/
-    │   ├── root-cause-tracing/
-    │   ├── systematic-debugging/
-    │   └── verification-before-completion/
+    │   └── root-cause-tracing/
     ├── legal/                 # Swiss legal practice skills (10 skills)
     │   ├── ABOUT.md
     │   ├── swiss-code-obligations/             # Search/cite Swiss CO (RS 220) from bundled Fedlex PDF
@@ -85,12 +76,11 @@ superpowers-skills/
     │   ├── parere-legale/                      # Formal Swiss legal opinion structure
     │   ├── ricerca-giurisprudenza-svizzera/    # Swiss case law (BGE/ATF) research
     │   └── due-diligence-legale-svizzera/      # Legal due diligence under Swiss law
-    ├── meta/                  # Skills about using/managing skills (5 skills)
+    ├── meta/                  # Skills about using/managing skills (4 skills)
     │   ├── gardening-skills-wiki/  # Wiki health check scripts
     │   ├── pulling-updates-from-skills-repository/
     │   ├── sharing-skills/
-    │   ├── testing-skills-with-subagents/
-    │   └── writing-skills/
+    │   └── testing-skills-with-subagents/
     ├── problem-solving/       # Reasoning & decision-making strategies (6 skills) — from Microsoft Amplifier
     │   ├── ABOUT.md
     │   ├── collision-zone-thinking/
@@ -102,9 +92,8 @@ superpowers-skills/
     ├── research/              # Investigation & knowledge synthesis (1 skill) — from Microsoft Amplifier
     │   ├── ABOUT.md
     │   └── tracing-knowledge-lineages/
-    ├── testing/               # Test strategies & anti-patterns (3 skills)
+    ├── testing/               # Test strategies & anti-patterns (2 skills)
     │   ├── condition-based-waiting/
-    │   ├── test-driven-development/
     │   └── testing-anti-patterns/
     └── using-skills/          # How to use Claude Code skills effectively (1 skill)
         ├── SKILL.md
@@ -135,14 +124,14 @@ Note: `when_to_use` (not `description`) is the primary field the model uses for 
 |----------|---------|-------|
 | `architecture/` | System design, structural patterns, trade-off analysis | 1 |
 | `architecture-design/` | Architecture practice, NYC due diligence, sustainability (EPD), materials research, product data, presentations | 39 |
-| `collaboration/` | Team workflows, git branching, communication, handoff patterns | 10 |
+| `collaboration/` | Team workflows, git branching, communication, handoff patterns | 1 |
 | `context-engineering/` | LLM context management, multi-agent patterns, memory systems, evaluation, harness engineering | 15 |
-| `debugging/` | Diagnosing failures, root cause analysis, error patterns | 4 |
+| `debugging/` | Diagnosing failures, root cause analysis, error patterns | 2 |
 | `legal/` | Swiss legal practice: CO/CC/CPC/LEF/LDIP statutory research, contract analysis/drafting, legal opinions, case law, due diligence | 10 |
-| `meta/` | Skills about working with Claude Code skills themselves | 5 |
+| `meta/` | Skills about working with Claude Code skills themselves | 4 |
 | `problem-solving/` | General reasoning, ideation, and decision-making strategies | 6 |
 | `research/` | Investigation, information synthesis, knowledge lineage | 1 |
-| `testing/` | Test strategies, TDD, flaky tests, anti-patterns | 3 |
+| `testing/` | Test strategies, TDD, flaky tests, anti-patterns | 2 |
 | `using-skills/` | How to write, install, and invoke Claude Code skills | 1 |
 
 ## Key Conventions for Skill Authoring
