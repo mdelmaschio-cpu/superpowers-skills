@@ -91,9 +91,10 @@ superpowers-skills/
     │   ├── sharing-skills/
     │   ├── testing-skills-with-subagents/
     │   └── writing-skills/
-    ├── problem-solving/       # Reasoning & decision-making strategies (6 skills) — from Microsoft Amplifier
+    ├── problem-solving/       # Reasoning & decision-making strategies (7 skills) — mostly from Microsoft Amplifier
     │   ├── ABOUT.md
     │   ├── collision-zone-thinking/
+    │   ├── consiglio-di-amministrazione/  # Agentic board of directors: 5 adversarial roles + president, debate, scored verdict
     │   ├── inversion-exercise/
     │   ├── meta-pattern-recognition/
     │   ├── scale-game/
@@ -140,7 +141,7 @@ Note: `when_to_use` (not `description`) is the primary field the model uses for 
 | `debugging/` | Diagnosing failures, root cause analysis, error patterns | 4 |
 | `legal/` | Swiss legal practice: CO/CC/CPC/LEF/LDIP statutory research, contract analysis/drafting, legal opinions, case law, due diligence | 10 |
 | `meta/` | Skills about working with Claude Code skills themselves | 5 |
-| `problem-solving/` | General reasoning, ideation, and decision-making strategies | 6 |
+| `problem-solving/` | General reasoning, ideation, and decision-making strategies | 7 |
 | `research/` | Investigation, information synthesis, knowledge lineage | 1 |
 | `testing/` | Test strategies, TDD, flaky tests, anti-patterns | 3 |
 | `using-skills/` | How to write, install, and invoke Claude Code skills | 1 |
