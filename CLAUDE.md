@@ -10,88 +10,90 @@ A shared, community-maintained library of Claude Code skills organized by functi
 
 ```
 superpowers-skills/
-├── README.md
-├── CLAUDE.md
-├── LICENSE                    # MIT, Copyright 2025 Jesse Vincent
+├── README.md                    # Minimal user-facing intro
+├── CLAUDE.md                    # This file — AI guidance for working in this repo
+├── LICENSE                      # MIT, Copyright 2025 Jesse Vincent
+├── .gitignore                   # Excludes editor files, OS files, logs, node_modules
+├── sync-superpowers-skills.sh   # Fetch upstream + rsync deploy to ~/.config/superpowers/skills/
 └── skills/
-    ├── REQUESTS.md            # Wishlist: skills to create next
-    ├── architecture/          # System design patterns (1 skill) — from Microsoft Amplifier
+    ├── REQUESTS.md              # Wishlist: skills to create next
+    ├── architecture/            # System design patterns (1 skill) — from Microsoft Amplifier
     │   ├── ABOUT.md
     │   └── preserving-productive-tensions/
-    ├── architecture-design/   # Architecture, real estate & product data skills (39 skills) — from AlpacaLabsLLC
+    ├── architecture-design/     # Architecture, real estate & product data skills (39 skills) — from AlpacaLabsLLC
     │   ├── ABOUT.md
-    │   ├── studio/            # Dispatcher for all architecture skills
-    │   ├── skills-menu/       # List/navigate all available skills
-    │   ├── project-dossier/   # Project dossier management
-    │   ├── decision/          # Document design decisions
-    │   ├── nyc-*/             # NYC due diligence (landmarks, DOB permits/violations, ACRIS, HPD, BSA, property-report)
+    │   ├── studio/              # Dispatcher for all architecture skills
+    │   ├── skills-menu/         # List/navigate all available skills
+    │   ├── project-dossier/     # Project dossier management
+    │   ├── decision/            # Document design decisions
+    │   ├── nyc-*/               # NYC due diligence (landmarks, DOB permits/violations, ACRIS, HPD, BSA, property-report)
     │   ├── environmental-analysis/ site-history/ mobility-analysis/ demographics-analysis/
     │   ├── zoning-analysis-nyc/ zoning-envelope/
     │   ├── workplace-programmer/ occupancy-calculator/
-    │   ├── spec-writer/       # Technical product specifications
-    │   ├── epd-*/             # Sustainability: EPD parse/research/compare/to-spec
-    │   ├── product-*/         # Materials research: research/spec-bulk-fetch/cleanup/spec-pdf-parser/
-    │   │                      #   image-processor/data-import/enrich/match/pair
-    │   ├── master-schedule/   # Master materials schedule
+    │   ├── spec-writer/         # Technical product specifications
+    │   ├── epd-*/               # Sustainability: EPD parse/research/compare/to-spec
+    │   ├── product-*/           # Materials research: research/spec-bulk-fetch/cleanup/spec-pdf-parser/
+    │   │                        #   image-processor/data-import/enrich/match/pair
+    │   ├── master-schedule/     # Master materials schedule
     │   ├── csv-to-sif/ sif-to-csv/
     │   ├── slide-deck-generator/ color-palette-generator/ resize-images/
     │   └── ...
-    ├── collaboration/         # Team collaboration & git workflow skills (10 skills)
+    ├── collaboration/           # Team collaboration & git workflow skills (10 skills)
     │   ├── brainstorming/
     │   ├── dispatching-parallel-agents/
     │   ├── executing-plans/
     │   ├── finishing-a-development-branch/
     │   ├── receiving-code-review/
-    │   ├── remembering-conversations/  # Only skill with executable code
+    │   ├── remembering-conversations/   # Only skill with executable code
     │   │   ├── SKILL.md
     │   │   ├── INDEXING.md
     │   │   ├── DEPLOYMENT.md
-    │   │   └── tool/          # Node.js/TypeScript source + CLI scripts
+    │   │   └── tool/            # Node.js/TypeScript source + CLI scripts
     │   ├── requesting-code-review/
     │   ├── subagent-driven-development/
     │   ├── using-git-worktrees/
     │   └── writing-plans/
-    ├── context-engineering/   # LLM context & agent system skills (15 skills) — from muratcankoylan
+    ├── context-engineering/     # LLM context & agent system skills (15 skills) — from muratcankoylan
     │   ├── ABOUT.md
-    │   ├── context-fundamentals/   # Context window mechanics
-    │   ├── context-degradation/    # Lost-in-middle, poisoning, distraction
-    │   ├── context-compression/    # Compacting long agent sessions
-    │   ├── context-optimization/   # Token budgeting, KV-cache, partitioning
-    │   ├── multi-agent-patterns/   # Supervisor, swarm, hierarchical topologies
-    │   ├── tool-design/            # Tool descriptions, schemas, MCP namespacing
-    │   ├── filesystem-context/     # Files as overflow context / durable scratchpad
-    │   ├── hosted-agents/          # Remote sandboxed agent infrastructure
-    │   ├── latent-briefing/        # KV-cache memory sharing between agents
-    │   ├── memory-systems/         # Cross-session memory: Mem0, Zep, Letta, Cognee
-    │   ├── evaluation/             # Deterministic checks, rubrics, quality gates
-    │   ├── advanced-evaluation/    # LLM-as-judge, pairwise comparison, bias
-    │   ├── harness-engineering/    # Autonomous agent control loops, rollback
-    │   ├── project-development/    # LLM project architecture, cost estimation
-    │   └── bdi-mental-states/      # BDI cognitive architecture with RDF semantics
-    ├── debugging/             # Debugging & troubleshooting skills (4 skills)
+    │   ├── context-fundamentals/    # Context window mechanics
+    │   ├── context-degradation/     # Lost-in-middle, poisoning, distraction
+    │   ├── context-compression/     # Compacting long agent sessions
+    │   ├── context-optimization/    # Token budgeting, KV-cache, partitioning
+    │   ├── multi-agent-patterns/    # Supervisor, swarm, hierarchical topologies
+    │   ├── tool-design/             # Tool descriptions, schemas, MCP namespacing
+    │   ├── filesystem-context/      # Files as overflow context / durable scratchpad
+    │   ├── hosted-agents/           # Remote sandboxed agent infrastructure
+    │   ├── latent-briefing/         # KV-cache memory sharing between agents
+    │   ├── memory-systems/          # Cross-session memory: Mem0, Zep, Letta, Cognee
+    │   ├── evaluation/              # Deterministic checks, rubrics, quality gates
+    │   ├── advanced-evaluation/     # LLM-as-judge, pairwise comparison, bias
+    │   ├── harness-engineering/     # Autonomous agent control loops, rollback
+    │   ├── project-development/     # LLM project architecture, cost estimation
+    │   └── bdi-mental-states/       # BDI cognitive architecture with RDF semantics
+    ├── debugging/               # Debugging & troubleshooting skills (4 skills)
     │   ├── defense-in-depth/
     │   ├── root-cause-tracing/
     │   ├── systematic-debugging/
     │   └── verification-before-completion/
-    ├── legal/                 # Swiss legal practice skills (10 skills)
+    ├── legal/                   # Swiss legal practice skills (10 skills)
     │   ├── ABOUT.md
-    │   ├── swiss-code-obligations/             # Search/cite Swiss CO (RS 220) from bundled Fedlex PDF
-    │   ├── codice-civile-svizzero/             # Search/cite Swiss CC (RS 210) from bundled Fedlex PDF
-    │   ├── codice-procedura-civile-svizzera/   # Search/cite Swiss CPC (RS 272) from bundled Fedlex PDF
+    │   ├── swiss-code-obligations/               # Search/cite Swiss CO (RS 220) from bundled Fedlex PDF
+    │   ├── codice-civile-svizzero/               # Search/cite Swiss CC (RS 210) from bundled Fedlex PDF
+    │   ├── codice-procedura-civile-svizzera/     # Search/cite Swiss CPC (RS 272) from bundled Fedlex PDF
     │   ├── legge-esecuzione-fallimento-svizzera/ # Search/cite Swiss LEF (RS 281.1) from bundled Fedlex PDF
     │   ├── diritto-internazionale-privato-svizzero/ # Search/cite Swiss LDIP (RS 291) from bundled Fedlex PDF
-    │   ├── analisi-contratto-co/               # Contract analysis under the Swiss CO
-    │   ├── redazione-clausole-co/              # Drafting CO-compliant contract clauses
-    │   ├── parere-legale/                      # Formal Swiss legal opinion structure
-    │   ├── ricerca-giurisprudenza-svizzera/    # Swiss case law (BGE/ATF) research
-    │   └── due-diligence-legale-svizzera/      # Legal due diligence under Swiss law
-    ├── meta/                  # Skills about using/managing skills (5 skills)
-    │   ├── gardening-skills-wiki/  # Wiki health check scripts
+    │   ├── analisi-contratto-co/                 # Contract analysis under the Swiss CO
+    │   ├── redazione-clausole-co/                # Drafting CO-compliant contract clauses
+    │   ├── parere-legale/                        # Formal Swiss legal opinion structure
+    │   ├── ricerca-giurisprudenza-svizzera/      # Swiss case law (BGE/ATF) research
+    │   └── due-diligence-legale-svizzera/        # Legal due diligence under Swiss law
+    ├── meta/                    # Skills about using/managing skills (5 skills)
+    │   ├── gardening-skills-wiki/   # Wiki health check scripts (garden.sh, check-*.sh)
     │   ├── pulling-updates-from-skills-repository/
     │   ├── sharing-skills/
     │   ├── testing-skills-with-subagents/
     │   └── writing-skills/
-    ├── problem-solving/       # Reasoning & decision-making strategies (6 skills) — from Microsoft Amplifier
+    ├── problem-solving/         # Reasoning & decision-making strategies (6 skills) — from Microsoft Amplifier
     │   ├── ABOUT.md
     │   ├── collision-zone-thinking/
     │   ├── inversion-exercise/
@@ -99,17 +101,24 @@ superpowers-skills/
     │   ├── scale-game/
     │   ├── simplification-cascades/
     │   └── when-stuck/
-    ├── research/              # Investigation & knowledge synthesis (1 skill) — from Microsoft Amplifier
+    ├── research/                # Investigation & knowledge synthesis (1 skill) — from Microsoft Amplifier
     │   ├── ABOUT.md
     │   └── tracing-knowledge-lineages/
-    ├── testing/               # Test strategies & anti-patterns (3 skills)
+    ├── security/                # Defensive/blue-team cybersecurity skills (5 skills) — from mukul975 (added 2026-06-20)
+    │   ├── ABOUT.md
+    │   ├── analyzing-indicators-of-compromise/     # IOC enrichment + SKILL.md + scripts/ioc_enrichment.py
+    │   ├── detecting-business-email-compromise/    # BEC detection + scripts/bec_email_analyzer.py
+    │   ├── hardening-linux-endpoint-with-cis-benchmark/ # CIS audit + scripts/cis_audit.py
+    │   ├── prioritizing-vulnerabilities-with-cvss-scoring/ # CVSS scoring + scripts/cvss_prioritize.py
+    │   └── triaging-security-incident-with-ir-playbook/    # IR triage + scripts/triage_incident.py
+    ├── testing/                 # Test strategies & anti-patterns (3 skills)
     │   ├── condition-based-waiting/
     │   ├── test-driven-development/
     │   └── testing-anti-patterns/
-    └── using-skills/          # How to use Claude Code skills effectively (1 skill)
-        ├── SKILL.md
-        ├── find-skills        # Shell script: list/filter available skills
-        └── skill-run          # Shell script: invoke a skill by name
+    └── using-skills/            # How to use Claude Code skills effectively (1 skill)
+        ├── SKILL.md             # Loaded at session start; enforces skill discovery discipline
+        ├── find-skills          # Shell script: list/filter available skills
+        └── skill-run            # Shell script: invoke a skill by name
 ```
 
 ## How Skills Work
@@ -142,8 +151,100 @@ Note: `when_to_use` (not `description`) is the primary field the model uses for 
 | `meta/` | Skills about working with Claude Code skills themselves | 5 |
 | `problem-solving/` | General reasoning, ideation, and decision-making strategies | 6 |
 | `research/` | Investigation, information synthesis, knowledge lineage | 1 |
+| `security/` | Defensive cybersecurity: IOC analysis, BEC detection, CIS hardening, CVSS prioritization, IR triage | 5 |
 | `testing/` | Test strategies, TDD, flaky tests, anti-patterns | 3 |
 | `using-skills/` | How to write, install, and invoke Claude Code skills | 1 |
+
+**Total: 100 skills across 12 categories** (as of 2026-08-07)
+
+## Key Files
+
+| File | Purpose |
+|------|-------|
+| `skills/using-skills/SKILL.md` | Mandatory session-start skill; enforces skill discovery and usage discipline. Loaded frequently — keep under 150-200 words. |
+| `skills/meta/writing-skills/SKILL.md` | How to author new skills correctly |
+| `skills/meta/gardening-skills-wiki/garden.sh` | Wiki health check runner; validates links, naming, index coverage |
+| `sync-superpowers-skills.sh` | Fetch upstream changes + rsync deploy to local install path |
+| `skills/collaboration/remembering-conversations/tool/package.json` | Node.js dependencies for the only skill with executable code |
+| `skills/REQUESTS.md` | Wishlist of skills to create next |
+| `skills/security/ABOUT.md` | Attribution for the security category (from mukul975/Anthropic-Cybersecurity-Skills, Apache-2.0) |
+
+## Commands
+
+### Deploy and Sync
+
+```bash
+# Fetch upstream changes and deploy to local install path
+./sync-superpowers-skills.sh
+
+# Override deploy target (default: ~/.config/superpowers/skills/)
+SUPERPOWERS_SKILLS_DIR=/custom/path ./sync-superpowers-skills.sh
+```
+
+### Wiki Health Checks
+
+Run from `~/.config/superpowers/skills/` after installation:
+
+```bash
+# Run all checks at once
+~/.claude/skills/meta/gardening-skills-wiki/garden.sh
+
+# Individual checks
+check-links.sh           # Validate @-references and cross-links
+check-naming.sh          # Validate kebab-case + frontmatter presence
+check-index-coverage.sh  # Validate INDEX files are complete
+analyze-search-gaps.sh   # Find missing skills / coverage gaps
+```
+
+Run `garden.sh` before committing skill changes to catch broken links, naming drift, and orphaned files.
+
+### remembering-conversations Tool
+
+The only skill with executable code. Run from the `tool/` directory:
+
+```bash
+cd skills/collaboration/remembering-conversations/tool
+npm install          # Install dependencies first
+npm run index        # Index conversation history
+npm run search       # Search indexed conversations
+npm test             # Run Vitest test suite
+npm run test:watch   # Watch mode
+```
+
+**CLI usage (after npm install):**
+
+```bash
+# Indexing
+./index-conversations                        # Index all conversations
+./index-conversations --cleanup              # Process only unindexed
+./index-conversations --verify               # Check index health
+./index-conversations --repair               # Fix issues from --verify
+./index-conversations --rebuild              # Nuclear: delete + rebuild (with confirm)
+./install-hook                               # Install sessionEnd auto-indexing hook
+
+# Searching
+./search-conversations "query"               # Vector similarity (default)
+./search-conversations --text "exact"        # Exact text match
+./search-conversations --both "query"        # Both modes combined
+./search-conversations --after 2025-01-01 --limit 5 "topic"
+```
+
+## Tech Stack
+
+**Primary:** Plain Markdown with YAML frontmatter (all skills)
+
+**Shell scripts:** bash (`sync-superpowers-skills.sh`, `garden.sh`, `check-*.sh`, `find-skills`, `skill-run`)
+
+**Node.js/TypeScript** (ES2022/ESNext modules): only in `skills/collaboration/remembering-conversations/tool/`
+- `better-sqlite3` + `sqlite-vec` (vector search)
+- `@xenova/transformers` (local embeddings, all-MiniLM-L6-v2, 384 dims)
+- `@anthropic-ai/claude-agent-sdk`
+- `vitest` (test runner)
+- `tsx` + `typescript`
+
+**Python scripts:** present in `skills/security/*/scripts/` and some `skills/legal/*/scripts/` — stdlib or `requests` only, no ML/LLM calls, all run standalone
+
+**No build system, no CI/CD, no package manager at the repository root level.**
 
 ## Key Conventions for Skill Authoring
 
@@ -178,6 +279,15 @@ The model discovers skills by matching `when_to_use` and skill body against the 
 - **One excellent example** — beats multi-language variations every time
 - **No build step** — this repo is plain markdown (except `remembering-conversations/tool/`)
 
+### Skills with Scripts
+
+Some categories include Python scripts alongside their SKILL.md:
+
+- **`security/`**: Each skill has a `scripts/` subdirectory with a standalone Python tool (e.g., `ioc_enrichment.py`, `bec_email_analyzer.py`, `cis_audit.py`, `cvss_prioritize.py`, `triage_incident.py`). Scripts use stdlib or `requests` only — no ML/LLM calls.
+- **`legal/`**: Some skills include `scripts/` and `references/` subdirectories for statutory lookup helpers.
+
+These scripts are executable without installation beyond standard Python. No LLM calls, no heavy dependencies.
+
 ### Attribution (ABOUT.md)
 
 When a skill is derived from another project, add `ABOUT.md` alongside `SKILL.md`:
@@ -203,11 +313,11 @@ This skill was derived from [Source Project](URL).
 [Explain what the original did and what you changed.]
 ```
 
-Skills in `problem-solving/`, `architecture/`, and `research/` are derived from the [Microsoft Amplifier](https://github.com/microsoft/amplifier) project.
-
-Skills in `architecture-design/` are derived from [skills-for-architects](https://github.com/AlpacaLabsLLC/skills-for-architects) by AlpacaLabsLLC (imported 2026-06-12).
-
-Skills in `context-engineering/` are derived from [Agent-Skills-for-Context-Engineering](https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering) by muratcankoylan (imported 2026-06-12).
+**Attribution map:**
+- `problem-solving/`, `architecture/`, `research/` — derived from [Microsoft Amplifier](https://github.com/microsoft/amplifier) (MIT)
+- `architecture-design/` — derived from [skills-for-architects](https://github.com/AlpacaLabsLLC/skills-for-architects) by AlpacaLabsLLC (imported 2026-06-12)
+- `context-engineering/` — derived from [Agent-Skills-for-Context-Engineering](https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering) by muratcankoylan (imported 2026-06-12)
+- `security/` — derived from [mukul975/Anthropic-Cybersecurity-Skills](https://github.com/mukul975/Anthropic-Cybersecurity-Skills) (Apache-2.0, imported 2026-06-20)
 
 ## TDD-Based Skill Development
 
@@ -257,33 +367,6 @@ tool/
     └── verify.test.ts
 ```
 
-**Scripts (run from `tool/` directory):**
-```bash
-cd skills/collaboration/remembering-conversations/tool
-npm install          # Install dependencies first
-npm run index        # Index conversation history (./index-conversations)
-npm run search       # Search indexed conversations (./search-conversations)
-npm test             # Run Vitest test suite
-npm run test:watch   # Watch mode
-```
-
-**CLI usage:**
-```bash
-# Index
-./index-conversations                    # Index all conversations
-./index-conversations --cleanup          # Process only unindexed
-./index-conversations --verify           # Check index health
-./index-conversations --repair           # Fix issues from --verify
-./index-conversations --rebuild          # Nuclear: delete + rebuild (with confirm)
-./install-hook                           # Install sessionEnd auto-indexing hook
-
-# Search
-./search-conversations "query"           # Vector similarity (default)
-./search-conversations --text "exact"    # Exact text match
-./search-conversations --both "query"    # Both modes combined
-./search-conversations --after 2025-01-01 --limit 5 "topic"
-```
-
 **Storage paths (at runtime):**
 - Archive: `~/.config/superpowers/conversation-archive/<project>/<uuid>.jsonl`
 - Summaries: `~/.config/superpowers/conversation-archive/<project>/<uuid>-summary.txt`
@@ -291,7 +374,7 @@ npm run test:watch   # Watch mode
 
 **How it works:** Conversations are embedded locally (no API call) via @xenova/transformers and stored in sqlite-vec for ANN search. Summaries are generated via Claude Haiku (Sonnet fallback, ~$0.01-0.02/conversation). Exact text match serves as fallback.
 
-**When editing this skill's code:** run `npm test` after changes — it's the only skill with automated tests.
+**When editing this skill's code:** run `npm test` after changes — it is the only skill with automated tests.
 
 ## Wiki Health Tools
 
@@ -302,10 +385,10 @@ The `meta/gardening-skills-wiki/` skill includes shell scripts for checking wiki
 ~/.claude/skills/meta/gardening-skills-wiki/garden.sh
 
 # Individual checks
-check-links.sh          # Validate @-references and cross-links
-check-naming.sh         # Validate kebab-case, frontmatter presence
-check-index-coverage.sh # Validate INDEX files are complete
-analyze-search-gaps.sh  # Find missing skills / coverage gaps
+check-links.sh           # Validate @-references and cross-links
+check-naming.sh          # Validate kebab-case, frontmatter presence
+check-index-coverage.sh  # Validate INDEX files are complete
+analyze-search-gaps.sh   # Find missing skills / coverage gaps
 ```
 
 Run these after adding, removing, or reorganizing skills.
@@ -319,9 +402,10 @@ Run these after adding, removing, or reorganizing skills.
 3. Fill in YAML frontmatter: `name`, `when_to_use`, `description`, `version`, and optionally `languages`.
 4. Write the skill body. Include overview, instructions, and at minimum one concrete example.
 5. If derived from another project, add `ABOUT.md` with full attribution.
-6. Test the skill with subagents under realistic pressure scenarios before submitting (see `skills/meta/testing-skills-with-subagents/`).
-7. Run `garden.sh` to verify no broken links or naming issues.
-8. Open a PR. Describe what the skill does, when it's useful, and what makes it non-obvious.
+6. If the skill includes Python helper scripts, place them in `scripts/` alongside `SKILL.md`. Use stdlib or `requests` only — no ML/LLM calls.
+7. Test the skill with subagents under realistic pressure scenarios before submitting (see `skills/meta/testing-skills-with-subagents/`).
+8. Run `garden.sh` to verify no broken links or naming issues.
+9. Open a PR. Describe what the skill does, when it's useful, and what makes it non-obvious.
 
 ### Requesting New Skills
 
@@ -365,6 +449,16 @@ git merge --ff-only @{u}
 git stash pop   # if stashed
 ```
 
+### Deploying to Local Install
+
+```bash
+# From the repo root — fetches upstream then rsyncs to ~/.config/superpowers/skills/
+./sync-superpowers-skills.sh
+
+# Override deploy target
+SUPERPOWERS_SKILLS_DIR=/custom/path ./sync-superpowers-skills.sh
+```
+
 ## Installation
 
 Consumed automatically by the superpowers plugin:
@@ -372,7 +466,7 @@ Consumed automatically by the superpowers plugin:
 ~/.config/superpowers/skills/
 ```
 
-For manual install, clone into that path.
+For manual install, clone into that path, or use `sync-superpowers-skills.sh` to deploy from a local checkout.
 
 ## How AI Assistants Should Behave Here
 
@@ -388,3 +482,7 @@ For manual install, clone into that path.
 - **`when_to_use` starts with "when"** — this is the convention that makes the find-skills tool output readable ("Use X when [text]")
 - **Kebab-case directories** — directory names are kebab-case; the `name` frontmatter field is the human-readable display name
 - **Run garden.sh** before committing skill changes to catch broken links, naming drift, and orphaned skills early
+- **Python scripts in security/ and legal/**: use stdlib or `requests` only; no ML/LLM calls; no external services; scripts must be runnable standalone
+- **remembering-conversations code changes**: always run `npm test` after edits — it is the only skill with automated tests
+- **One PR per skill** — never batch multiple new skills in a single PR; each gets its own branch
+- **Security category exists** — `skills/security/` contains 5 blue-team cybersecurity skills (IOC analysis, BEC detection, CIS hardening, CVSS prioritization, IR triage), each with a Python script in `scripts/`. Derived from mukul975/Anthropic-Cybersecurity-Skills (Apache-2.0), imported 2026-06-20.
