@@ -219,12 +219,12 @@ Skills in `document-processing/` are derived from [anydoc](https://github.com/fi
 
 These forks are tracked as upstream sources for candidate skills, reviewed periodically (see Weekly Sync below):
 
-- [`mdelmaschio-cpu/anydoc`](https://github.com/mdelmaschio-cpu/anydoc) (fork of [firecrawl/anydoc](https://github.com/firecrawl/anydoc)) — Rust document-to-Markdown converter, ships an Agent Skill at `skills/convert-documents-to-markdown/SKILL.md`. Imported into `document-processing/`.
-- [`mdelmaschio-cpu/OpenSwarm`](https://github.com/mdelmaschio-cpu/OpenSwarm) (fork of [VRSEN/openswarm](https://github.com/VRSEN/openswarm)) — multi-agent orchestration framework (Agency Swarm). Ships Claude Code subagents under `.claude/agents/` tied to its own "Agency Swarm v1.0.0" framework conventions; not yet imported as a general-purpose skill since the content is framework-specific rather than technology-agnostic. Re-evaluate on each sync for reusable, adaptable patterns (e.g. multi-agent orchestration, PRD-driven agent creation).
+- [`mdelmaschio-cpu/anydoc`](https://github.com/mdelmaschio-cpu/anydoc) (fork of [firecrawl/anydoc](https://github.com/firecrawl/anydoc)) — Rust document-to-Markdown converter, ships an Agent Skill at `skills/convert-documents-to-markdown/SKILL.md`. Imported into `document-processing/`. Last reviewed commit: `48c6e2e83c007284430e10135abbc0ed1c0ee00c` (2026-08-09).
+- [`mdelmaschio-cpu/OpenSwarm`](https://github.com/mdelmaschio-cpu/OpenSwarm) (fork of [VRSEN/openswarm](https://github.com/VRSEN/openswarm)) — multi-agent orchestration framework (Agency Swarm). Ships Claude Code subagents under `.claude/agents/` tied to its own "Agency Swarm v1.0.0" framework conventions; not yet imported as a general-purpose skill since the content is framework-specific rather than technology-agnostic. Re-evaluate on each sync for reusable, adaptable patterns (e.g. multi-agent orchestration, PRD-driven agent creation). Last reviewed commit: `e5c73d8caea83bd53bc4cdcd5c49f19e5ef888dd` (2026-08-09, no skill imported yet).
 
 ### Weekly Sync
 
-A scheduled Routine checks these repos for new commits weekly. On new content, it drafts candidate skills following the normal `Adding a New Skill` workflow (own branch, one skill per PR, ABOUT.md attribution, garden.sh) rather than committing directly — content only becomes part of this repo once a PR is reviewed and merged.
+A scheduled Routine checks these repos for new commits weekly, comparing each fork's current HEAD against the "Last reviewed commit" recorded above. When there's new content, it drafts candidate skills following the normal `Adding a New Skill` workflow (own branch, one skill per PR, ABOUT.md attribution, garden.sh) rather than committing directly — content only becomes part of this repo once a PR is reviewed and merged. After each review pass (whether or not it produced a PR), it updates the "Last reviewed commit" hashes above in a small maintenance commit on its own branch, so the next run knows what's already been considered.
 
 ## TDD-Based Skill Development
 
