@@ -73,6 +73,9 @@ superpowers-skills/
     │   ├── root-cause-tracing/
     │   ├── systematic-debugging/
     │   └── verification-before-completion/
+    ├── document-processing/   # Document/file format conversion skills (1 skill) — from Firecrawl anydoc
+    │   ├── ABOUT.md
+    │   └── convert-documents-to-markdown/
     ├── legal/                 # Swiss legal practice skills (10 skills)
     │   ├── ABOUT.md
     │   ├── swiss-code-obligations/             # Search/cite Swiss CO (RS 220) from bundled Fedlex PDF
@@ -138,6 +141,7 @@ Note: `when_to_use` (not `description`) is the primary field the model uses for 
 | `collaboration/` | Team workflows, git branching, communication, handoff patterns | 10 |
 | `context-engineering/` | LLM context management, multi-agent patterns, memory systems, evaluation, harness engineering | 15 |
 | `debugging/` | Diagnosing failures, root cause analysis, error patterns | 4 |
+| `document-processing/` | Document/file format conversion (Word, PDF, Excel, etc. to Markdown) | 1 |
 | `legal/` | Swiss legal practice: CO/CC/CPC/LEF/LDIP statutory research, contract analysis/drafting, legal opinions, case law, due diligence | 10 |
 | `meta/` | Skills about working with Claude Code skills themselves | 5 |
 | `problem-solving/` | General reasoning, ideation, and decision-making strategies | 6 |
@@ -208,6 +212,19 @@ Skills in `problem-solving/`, `architecture/`, and `research/` are derived from 
 Skills in `architecture-design/` are derived from [skills-for-architects](https://github.com/AlpacaLabsLLC/skills-for-architects) by AlpacaLabsLLC (imported 2026-06-12).
 
 Skills in `context-engineering/` are derived from [Agent-Skills-for-Context-Engineering](https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering) by muratcankoylan (imported 2026-06-12).
+
+Skills in `document-processing/` are derived from [anydoc](https://github.com/firecrawl/anydoc) by Firecrawl (imported 2026-08-09).
+
+## Linked Source Repositories
+
+These forks are tracked as upstream sources for candidate skills, reviewed periodically (see Weekly Sync below):
+
+- [`mdelmaschio-cpu/anydoc`](https://github.com/mdelmaschio-cpu/anydoc) (fork of [firecrawl/anydoc](https://github.com/firecrawl/anydoc)) — Rust document-to-Markdown converter, ships an Agent Skill at `skills/convert-documents-to-markdown/SKILL.md`. Imported into `document-processing/`.
+- [`mdelmaschio-cpu/OpenSwarm`](https://github.com/mdelmaschio-cpu/OpenSwarm) (fork of [VRSEN/openswarm](https://github.com/VRSEN/openswarm)) — multi-agent orchestration framework (Agency Swarm). Ships Claude Code subagents under `.claude/agents/` tied to its own "Agency Swarm v1.0.0" framework conventions; not yet imported as a general-purpose skill since the content is framework-specific rather than technology-agnostic. Re-evaluate on each sync for reusable, adaptable patterns (e.g. multi-agent orchestration, PRD-driven agent creation).
+
+### Weekly Sync
+
+A scheduled Routine checks these repos for new commits weekly. On new content, it drafts candidate skills following the normal `Adding a New Skill` workflow (own branch, one skill per PR, ABOUT.md attribution, garden.sh) rather than committing directly — content only becomes part of this repo once a PR is reviewed and merged.
 
 ## TDD-Based Skill Development
 
