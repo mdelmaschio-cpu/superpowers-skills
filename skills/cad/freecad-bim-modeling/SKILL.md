@@ -16,6 +16,8 @@ Architectural elements in FreeCAD (walls, rooms, floors, windows) are parametric
 
 **Verify function names before use** — `Draft` gained snake_case aliases alongside the original camelCase names (`makeWire`/`make_wire` both exist), but `Arch` has NOT been given snake_case aliases as of 1.1.3 — only `makeWall`, `makeSpace`, `makeWindow`, `makeFloor`, `makeBuilding`, `makeStructure` (camelCase) exist. Confirmed against a real FreeCAD 1.1.3 install on 2026-08-13: `dir(Arch)` contains no `make_*` names at all. Check `dir(Draft)` / `dir(Arch)` on the installed version rather than trusting either spelling blind — a future release may add the aliases.
 
+**Objects aren't identifiable by TypeId or class name** — on 1.1.3 every `Arch.make*` result is a generic scripted object (`Part::FeaturePython`, or `App::GeometryPython` for `makeFloor`/`makeBuilding`), so `obj.isDerivedFrom("Arch::Wall")` etc. never matches — there is no such class. Identify what an object *is* with `obj.Proxy.Type` instead (confirmed values: `"Wall"`, `"Space"`, `"Window"`; `makeFloor` produces `Proxy.Type == "BuildingPart"`, not `"Floor"` — Floor/Building/Site are unified under `BuildingPart`, distinguished by the `IfcType` property).
+
 ## Floor plan outline → walls
 
 A room/building outline is a closed 2D wire; walls are built on top of it:
@@ -53,7 +55,7 @@ Openings are hosted on a wall face, not modeled as separate volumes to boolean-c
 
 ```python
 window = Arch.makeWindow(width=1200, height=1400)
-window.Hosted = [wall]
+window.Hosts = [wall]
 window.Placement.Base = App.Vector(1000, 0, 900)   # position along the wall + sill height
 ```
 A facade is not a distinct object type — model it as the exterior `Arch.makeWall` (or `Arch.makeStructure` for a non-wall facade element like a curtain-wall panel or column grid) with windows/doors hosted on it. Position openings by setting `Placement.Base` relative to the host wall's local origin; use `Draft.move`/`Draft.rotate` to reposition existing elements instead of recreating them.
@@ -88,4 +90,4 @@ Export with `TechDraw` GUI-side commands, or via `importSVG`/`importDXF` modules
 
 ## Verification
 
-After generating a plan, check it satisfies the stated intent before reporting done: room count and names (`[o.Label for o in doc.Objects if o.isDerivedFrom("Arch::Space")]`), overall footprint (`floor.Shape.BoundBox` if a floor's shape is meaningful, or the fused outline), and wall thickness/height against what was requested. See `skills/cad/freecad-scripting` for the general verification pattern.
+After generating a plan, check it satisfies the stated intent before reporting done: room count and names (`[o.Label for o in doc.Objects if getattr(getattr(o, "Proxy", None), "Type", None) == "Space"]` — not `isDerivedFrom`, see above), overall footprint (`floor.Shape.BoundBox` if a floor's shape is meaningful, or the fused outline), and wall thickness/height against what was requested. See `skills/cad/freecad-scripting` for the general verification pattern.
