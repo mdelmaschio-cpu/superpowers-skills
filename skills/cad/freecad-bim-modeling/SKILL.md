@@ -90,14 +90,20 @@ import TechDraw
 page = doc.addObject("TechDraw::DrawPage", "Plan")
 template = doc.addObject("TechDraw::DrawSVGTemplate", "Template")
 page.Template = template
+template.Template = "/path/to/some_template.svg"   # required — see note below
 
 view = doc.addObject("TechDraw::DrawViewArch", "PlanView")   # or DrawViewPart for a plain projection
-view.Source = [floor]
+view.Source = floor    # a single object, NOT a list — confirmed: [floor] raises
+                        # "TypeError: Type must be App.DocumentObject or None, not list"
 view.Direction = App.Vector(0, 0, 1)   # top-down = plan view; (0,-1,0) etc. for an elevation/facade view
 page.addView(view)
 doc.recompute()
 ```
-Export with `TechDraw` GUI-side commands, or via `importSVG`/`importDXF` modules for headless SVG/DXF/PDF output — confirm the exact export call against the installed version the same way as above.
+Verified on a real FreeCAD 1.1.3 install: with `view.Source` as a single object, `page.addView`/`doc.recompute()` complete with no errors and `view.State == ['Up-to-date']`. The one bug found was `Source` taking a list (matching the plural-sounding property name is a natural but wrong assumption).
+
+**`template.Template` is not auto-populated** — creating a `TechDraw::DrawSVGTemplate` object leaves its `Template` property (the actual `.svg` file path) as an empty string; recompute still succeeds, but the page has no real layout/border until you assign a real template file path. FreeCAD ships default templates (typically under its install's `data/Mod/TechDraw/Templates/`) — locate one for the installed version rather than assuming a path.
+
+Export with `TechDraw` GUI-side commands, or via `importSVG`/`importDXF` modules for headless SVG/DXF/PDF output — confirm the exact export call against the installed version the same way as above (not verified in this pass).
 
 ## Verification
 
