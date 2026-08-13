@@ -55,13 +55,50 @@ building = Arch.makeBuilding([floor])                   # stacks stories into a 
 ```
 Group per story with `makeFloor` before stacking multi-story buildings — elements not assigned to a floor won't appear in per-story plan views later.
 
-**`room.Area` is not reliable as written above — and two attempted fixes both failed.** Confirmed on a real install: `makeSpace(walls, ...)` computed `Area = 799999.99...` mm² (≈0.8 m²) for a room whose real interior is ~10.6 m², suspiciously equal to just one wall's face area (4000mm × 200mm). Passing a list of unjoined wall objects does not reliably establish the space boundary.
+**`room.Area` is wrong as written above — `makeSpace(walls, ...)` computed `Area = 799999.99...` mm² (≈0.8 m²)** for a room whose real interior is ~10.6 m², suspiciously equal to just one wall's face area. Passing a list of unjoined wall objects at creation time does not reliably establish the space boundary.
 
-`Arch.addSpaceBoundaries(room, subobjects)` looks like the fix, but:
-- Calling it with the plain wall objects (`Arch.addSpaceBoundaries(room, walls)`) raises `AttributeError: 'FeaturePython' object has no attribute 'SubElementNames'` — internally it expects `SelectionObject`-like items (as returned by `Gui.Selection.getSelectionEx()`), not plain document objects or the `(obj, ("Face1",))` tuple format its own docstring claims also works.
-- Working around that by passing objects that fake the expected shape (`class FakeSel: Object = obj; SubElementNames = ("Face1",)`) avoids the `AttributeError`, but FreeCAD then prints `Arch: error computing space boundary for Living Room` internally and `room.Area` is unchanged — so guessing `"Face1"` as the interior-facing face name is wrong (and likely differs per wall depending on orientation), and this path has not been made to work.
+**Verified fix**: create the `Space` empty (no `objectslist` arg), then add boundaries explicitly via `Arch.addSpaceBoundaries`, using the actual interior-facing face of each wall — computed geometrically, not guessed:
 
-Until someone works out the correct per-wall face name (or confirms this genuinely requires an interactive GUI selection, not a scriptable one), **treat `room.Area` as untrustworthy** — don't report an area to the user without independently confirming it against a hand-calculated interior footprint.
+```python
+def find_interior_face(wall, room_center):
+    """Returns the index (0-based) of the wall's face whose normal points
+    most toward room_center, i.e. the interior-facing face."""
+    best_idx, best_dot = None, -1e9
+    for i, face in enumerate(wall.Shape.Faces):
+        u0, u1, v0, v1 = face.ParameterRange
+        normal = face.normalAt((u0 + u1) / 2.0, (v0 + v1) / 2.0)
+        to_room = App.Vector(room_center.x - face.CenterOfMass.x,
+                              room_center.y - face.CenterOfMass.y, 0)
+        if to_room.Length < 1e-6:
+            continue
+        to_room.normalize()
+        n2d = App.Vector(normal.x, normal.y, 0)
+        if n2d.Length < 1e-6:
+            continue
+        n2d.normalize()
+        dot = n2d.dot(to_room)
+        if dot > best_dot:
+            best_idx, best_dot = i, dot
+    return best_idx
+
+class _BoundarySel:
+    """Stand-in for a Gui.Selection SelectionObject — addSpaceBoundaries
+    requires .Object/.SubElementNames, not plain objects or (obj, ("FaceN",))
+    tuples despite its own docstring claiming the tuple format also works."""
+    def __init__(self, obj, subnames):
+        self.Object = obj
+        self.SubElementNames = subnames
+
+room_center = App.Vector(2000, 1500, 1350)   # a point inside the room
+room = Arch.makeSpace(name="Living Room")     # empty — do NOT pass walls here
+doc.recompute()
+
+boundaries = [_BoundarySel(w, ("Face" + str(find_interior_face(w, room_center) + 1),))
+              for w in walls]
+Arch.addSpaceBoundaries(room, boundaries)
+doc.recompute()
+```
+Verified on a real FreeCAD 1.1.3 install: for the 4000×3000mm/200mm-thick example, this produced `room.Area == 10640000.0` mm² (10.64 m²) — an exact match to the hand-calculated interior footprint `(4000-200) * (3000-200)`. Two earlier attempts failed and are worth knowing about if you hit them again: (1) calling `Arch.addSpaceBoundaries(room, walls)` with plain wall objects raises `AttributeError: 'FeaturePython' object has no attribute 'SubElementNames'`; (2) creating the room *with* `walls` passed to `makeSpace(walls, ...)` and *then* calling `addSpaceBoundaries` on top produces a silently wrong area even with the correct face — the room must be created empty first.
 
 ## Doors, windows, and facades
 
@@ -144,12 +181,13 @@ Export with `TechDraw` GUI-side commands, or via `importSVG`/`importDXF` modules
 
 ## Verification
 
-After generating a plan, check it satisfies the stated intent before reporting done — a script that ran without error has NOT proven the geometry is right (see the walls/area/window pitfalls above, all of which run silently to completion while producing wrong results):
+After generating a plan, check it satisfies the stated intent before reporting done — a script that ran without error has NOT proven the geometry is right (see the walls/window pitfalls above, all of which run silently to completion while producing wrong results):
 
 - Room count and names: `[o.Label for o in doc.Objects if getattr(getattr(o, "Proxy", None), "Type", None) == "Space"]` (not `isDerivedFrom` — see above).
 - Each wall is actually hollow/thin, not a solid block: compare `sum(w.Shape.Volume for w in walls)` against the hand-calculated hollow-loop volume (`perimeter * width * height`) for the requested dimensions — they should match closely, not be an order of magnitude larger.
-- `room.Area` against a hand-calculated interior footprint before reporting it — do not repeat it to the user unverified; this is a known-broken value with no confirmed fix (see above).
+- `room.Area`: only trust it if the room was built via the empty-`makeSpace` + `addSpaceBoundaries` + computed-interior-face recipe above — compare against a hand-calculated interior footprint before reporting it to the user regardless.
 - Window/door presence: use `Arch.makeWindowPreset`, not bare `Arch.makeWindow` (see above), and still confirm with `window.Shape.Volume` (non-zero, no `RuntimeError`) rather than trusting a clean script exit.
+- TechDraw views (plan/elevation/section): use `TechDraw::DrawViewPart`/`DrawViewSection`, not `DrawViewArch` (see above), and check `State == ['Up-to-date']` since these objects have no `.Shape` to inspect.
 - Overall footprint: `floor.Shape.BoundBox` if a floor's shape is meaningful, or the fused wall outline.
 
 See `skills/cad/freecad-scripting` for the general verification pattern.
