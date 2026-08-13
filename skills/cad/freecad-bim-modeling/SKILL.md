@@ -94,9 +94,11 @@ window.Height = 1600    # resize the opening
 doc.recompute()
 ```
 
-## Producing a 2D plan drawing (pianta)
+## Producing 2D drawings: plans, elevations, sections
 
-To hand back a printable/exportable floor plan rather than just a 3D model, use `TechDraw`:
+**`TechDraw::DrawViewArch` is broken on 1.1.3 — do not use it**, despite it being the type this skill previously recommended and despite `Arch`/BIM documentation still referencing it. Confirmed: `doc.addObject("TechDraw::DrawViewArch", "PlanView")` succeeds and reports `TypeId == "TechDraw::DrawViewArch"`, but the live object has no `Direction` property (`AttributeError: 'TechDraw.DrawViewSymbol' object has no attribute 'Direction'`) — it's a non-functional legacy shell, not a working projection view.
+
+Use **`TechDraw::DrawViewPart`** instead — verified to work for both plan (top-down) and elevation/facade views:
 
 ```python
 import TechDraw
@@ -106,14 +108,35 @@ template = doc.addObject("TechDraw::DrawSVGTemplate", "Template")
 page.Template = template
 template.Template = "/path/to/some_template.svg"   # required — see note below
 
-view = doc.addObject("TechDraw::DrawViewArch", "PlanView")   # or DrawViewPart for a plain projection
-view.Source = floor    # a single object, NOT a list — confirmed: [floor] raises
-                        # "TypeError: Type must be App.DocumentObject or None, not list"
-view.Direction = App.Vector(0, 0, 1)   # top-down = plan view; (0,-1,0) etc. for an elevation/facade view
-page.addView(view)
+planview = doc.addObject("TechDraw::DrawViewPart", "PlanView")
+planview.Source = walls              # a LIST of objects with real Shapes (e.g. the wall list) —
+                                      # confirmed working; NOT the Arch floor/BuildingPart object
+planview.Direction = App.Vector(0, 0, 1)     # top-down = plan
+page.addView(planview)
+
+elevview = doc.addObject("TechDraw::DrawViewPart", "ElevationView")
+elevview.Source = walls
+elevview.Direction = App.Vector(0, -1, 0)    # facade/elevation, looking from -Y; use other axes as needed
+page.addView(elevview)
 doc.recompute()
 ```
-Verified on a real FreeCAD 1.1.3 install: with `view.Source` as a single object, `page.addView`/`doc.recompute()` complete with no errors and `view.State == ['Up-to-date']`. The one bug found was `Source` taking a list (matching the plural-sounding property name is a natural but wrong assumption).
+Verified on a real FreeCAD 1.1.3 install: both views compute with no errors, `State == ['Up-to-date']`.
+
+For a **section**, use `TechDraw::DrawViewSection` — it needs a `BaseView` (an existing `DrawViewPart`) **and** its own `Source` set explicitly; `Source` does NOT auto-populate from `BaseView` (confirmed: left empty after only setting `BaseView`):
+
+```python
+section = doc.addObject("TechDraw::DrawViewSection", "SectionA")
+section.BaseView = planview
+section.Source = walls                       # required — same object list as the BaseView's Source
+section.SectionSymbol = "A"
+section.SectionNormal = App.Vector(0, 1, 0)   # cutting-plane normal
+section.SectionOrigin = App.Vector(2000, 1500, 1350)   # a point on the cutting plane
+page.addView(section)
+doc.recompute()
+```
+Verified: `section.State == ['Up-to-date']` and `section.Source` correctly lists the 4 wall `Part::Feature` objects once set explicitly.
+
+**None of these TechDraw view objects expose a `.Shape` property** (`hasattr(view, "Shape")` is `False`) — they're 2D drawing views, not 3D solids, so don't try to verify them with `.Shape.BoundBox` like Arch/Part objects. Verify with `view.State == ['Up-to-date']` (no error string in the list) instead.
 
 **`template.Template` is not auto-populated** — creating a `TechDraw::DrawSVGTemplate` object leaves its `Template` property (the actual `.svg` file path) as an empty string; recompute still succeeds, but the page has no real layout/border until you assign a real template file path. FreeCAD ships default templates (typically under its install's `data/Mod/TechDraw/Templates/`) — locate one for the installed version rather than assuming a path.
 
