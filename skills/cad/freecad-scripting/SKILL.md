@@ -30,7 +30,7 @@ Two execution modes, pick based on whether a human needs to watch:
 
 ## Version drift — verify before trusting memorized calls
 
-FreeCAD's scripting API shifts between major versions (0.20 / 0.21 / 1.0) — most notably `Draft`/`Arch` function names moved from camelCase (`makeWire`) to snake_case (`make_wire`) in 1.0, and both spellings may or may not exist depending on install. Before relying on a function from memory or from this skill:
+FreeCAD's scripting API shifts between major versions (0.20 / 0.21 / 1.0+) — most notably `Draft` gained snake_case aliases alongside its camelCase names (`makeWire` and `make_wire` both exist). Don't assume `Arch` follows the same pattern: confirmed against a real FreeCAD 1.1.3 install (2026-08-13), `Arch` still exposes only camelCase (`makeWall`, `makeSpace`, `makeWindow`, `makeFloor`, `makeBuilding`, `makeStructure` — no `make_*` aliases). Before relying on a function from memory or from this skill:
 ```bash
 freecadcmd -c "import FreeCAD; print(FreeCAD.Version())"
 ```

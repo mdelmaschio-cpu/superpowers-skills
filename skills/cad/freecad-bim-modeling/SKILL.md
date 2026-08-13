@@ -14,7 +14,7 @@ allowed-tools:
 
 Architectural elements in FreeCAD (walls, rooms, floors, windows) are parametric objects from the `Draft` and `Arch` Python modules (the workbench is labeled "BIM" in the GUI in recent versions; the underlying module is still `Arch`). This skill assumes the document/recompute/placement/boolean mechanics from `skills/cad/freecad-scripting` — read that first if unfamiliar.
 
-**Verify function names before use** — `Draft`/`Arch` renamed several functions from camelCase to snake_case between FreeCAD 0.21 and 1.0 (`makeWire`→`make_wire`, `makeWall`→`make_wall`, etc.). Check `dir(Draft)` / `dir(Arch)` on the installed version rather than trusting either spelling blind.
+**Verify function names before use** — `Draft` gained snake_case aliases alongside the original camelCase names (`makeWire`/`make_wire` both exist), but `Arch` has NOT been given snake_case aliases as of 1.1.3 — only `makeWall`, `makeSpace`, `makeWindow`, `makeFloor`, `makeBuilding`, `makeStructure` (camelCase) exist. Confirmed against a real FreeCAD 1.1.3 install on 2026-08-13: `dir(Arch)` contains no `make_*` names at all. Check `dir(Draft)` / `dir(Arch)` on the installed version rather than trusting either spelling blind — a future release may add the aliases.
 
 ## Floor plan outline → walls
 
@@ -33,30 +33,30 @@ outline = Draft.make_wire([
     App.Vector(0, 3000, 0),
 ], closed=True)
 
-wall = Arch.make_wall(outline, width=200, height=2700)
+wall = Arch.makeWall(outline, width=200, height=2700)
 doc.recompute()
 ```
-`Arch.make_wall` extrudes the wire into a closed loop of walls with the given thickness (`width`) and story height (`height`). For a single straight wall instead, base it on a two-point `Draft.make_wire` (open, not closed).
+`Arch.makeWall` extrudes the wire into a closed loop of walls with the given thickness (`width`) and story height (`height`). For a single straight wall instead, base it on a two-point `Draft.make_wire` (open, not closed).
 
 ## Rooms and stories
 
 ```python
-room = Arch.make_space([wall], name="Living Room")     # named, area-tagged space enclosed by walls
-floor = Arch.make_floor([wall, room])                    # groups elements into one story
-building = Arch.make_building([floor])                    # stacks stories into a building
+room = Arch.makeSpace([wall], name="Living Room")     # named, area-tagged space enclosed by walls
+floor = Arch.makeFloor([wall, room])                    # groups elements into one story
+building = Arch.makeBuilding([floor])                    # stacks stories into a building
 ```
-Group per story with `make_floor` before stacking multi-story buildings — elements not assigned to a floor won't appear in per-story plan views later.
+Group per story with `makeFloor` before stacking multi-story buildings — elements not assigned to a floor won't appear in per-story plan views later.
 
 ## Doors, windows, and facades
 
-Openings are hosted on a wall face, not modeled as separate volumes to boolean-cut yourself — `Arch.make_window` handles the cut automatically:
+Openings are hosted on a wall face, not modeled as separate volumes to boolean-cut yourself — `Arch.makeWindow` handles the cut automatically:
 
 ```python
-window = Arch.make_window(width=1200, height=1400)
+window = Arch.makeWindow(width=1200, height=1400)
 window.Hosted = [wall]
 window.Placement.Base = App.Vector(1000, 0, 900)   # position along the wall + sill height
 ```
-A facade is not a distinct object type — model it as the exterior `Arch.make_wall` (or `Arch.make_structure` for a non-wall facade element like a curtain-wall panel or column grid) with windows/doors hosted on it. Position openings by setting `Placement.Base` relative to the host wall's local origin; use `Draft.move`/`Draft.rotate` to reposition existing elements instead of recreating them.
+A facade is not a distinct object type — model it as the exterior `Arch.makeWall` (or `Arch.makeStructure` for a non-wall facade element like a curtain-wall panel or column grid) with windows/doors hosted on it. Position openings by setting `Placement.Base` relative to the host wall's local origin; use `Draft.move`/`Draft.rotate` to reposition existing elements instead of recreating them.
 
 ## Changing dimensions after modeling
 
