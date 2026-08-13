@@ -55,19 +55,33 @@ building = Arch.makeBuilding([floor])                   # stacks stories into a 
 ```
 Group per story with `makeFloor` before stacking multi-story buildings — elements not assigned to a floor won't appear in per-story plan views later.
 
-**`room.Area` is not reliable as written above** — confirmed on a real install: `makeSpace(walls, ...)` computed `Area = 799999.99...` mm² (≈0.8 m²) for a room whose real interior is ~10.6 m², suspiciously equal to just one wall's face area (4000mm × 200mm). Passing a list of unjoined wall objects does not reliably establish the space boundary. `Arch.addSpaceBoundaries` (present in `dir(Arch)`) looks like the relevant fix but has not been verified — treat `room.Area` as untrustworthy until you've confirmed it against a known room size, and don't report an area to the user without that check.
+**`room.Area` is not reliable as written above — and two attempted fixes both failed.** Confirmed on a real install: `makeSpace(walls, ...)` computed `Area = 799999.99...` mm² (≈0.8 m²) for a room whose real interior is ~10.6 m², suspiciously equal to just one wall's face area (4000mm × 200mm). Passing a list of unjoined wall objects does not reliably establish the space boundary.
+
+`Arch.addSpaceBoundaries(room, subobjects)` looks like the fix, but:
+- Calling it with the plain wall objects (`Arch.addSpaceBoundaries(room, walls)`) raises `AttributeError: 'FeaturePython' object has no attribute 'SubElementNames'` — internally it expects `SelectionObject`-like items (as returned by `Gui.Selection.getSelectionEx()`), not plain document objects or the `(obj, ("Face1",))` tuple format its own docstring claims also works.
+- Working around that by passing objects that fake the expected shape (`class FakeSel: Object = obj; SubElementNames = ("Face1",)`) avoids the `AttributeError`, but FreeCAD then prints `Arch: error computing space boundary for Living Room` internally and `room.Area` is unchanged — so guessing `"Face1"` as the interior-facing face name is wrong (and likely differs per wall depending on orientation), and this path has not been made to work.
+
+Until someone works out the correct per-wall face name (or confirms this genuinely requires an interactive GUI selection, not a scriptable one), **treat `room.Area` as untrustworthy** — don't report an area to the user without independently confirming it against a hand-calculated interior footprint.
 
 ## Doors, windows, and facades
 
-Openings are meant to be hosted on a wall face, with `Arch.makeWindow` handling the cut automatically — but **this could not be verified as working** on a real install:
+**Do not create a window with bare `Arch.makeWindow(width=, height=)`** — confirmed on a real install: even with `Hosts` correctly set, its `Shape` raises `RuntimeError: shape is invalid`. This matches `Arch.makeWindow`'s own docstring: without a `baseobj` sketch or explicit `parts`, `WindowParts` is left undefined and the object stays shapeless.
+
+Use `Arch.makeWindowPreset` instead — verified to produce valid geometry:
 
 ```python
-window = Arch.makeWindow(width=1200, height=1400)
-window.Hosts = [walls[0]]  # NOT window.Hosted — confirmed via window.PropertiesList
+window = Arch.makeWindowPreset(
+    "Open 1-pane",   # windowtype - must be one of Arch.WindowPresets
+    1200, 1400,       # width, height
+    100, 30, 100,     # h1, h2, h3 - vertical frame/sash dimensions (mm)
+    30, 30,           # w1, w2 - horizontal frame/sash dimensions (mm)
+    0, 0,             # o1, o2 - offsets (mm)
+)
+window.Hosts = [walls[0]]      # NOT window.Hosted — confirmed via window.PropertiesList
 window.Placement.Base = App.Vector(1000, 0, 900)   # position along the wall + sill height
 doc.recompute()
 ```
-`window.Hosts` (not `Hosted`) is the confirmed correct property. However, after this, `window.Shape.Volume` raised `RuntimeError: shape is invalid` — a bare `makeWindow(width=, height=)` with no `Preset`/`WindowParts` does not produce valid geometry on 1.1.3. Before relying on this for real work, set a `Preset` (see `Arch.WindowPresets` / `Arch.makeWindowPreset`) or inspect the object in the GUI — do not assume the opening exists just because the script ran without error.
+Verified on a real FreeCAD 1.1.3 install: `window.Shape.Volume` came out to `21271200.0` (nonzero, valid) with the call above, versus `RuntimeError` for bare `makeWindow`. `Arch.WindowPresets` lists the valid `windowtype` values (`'Fixed'`, `'Open 1-pane'`, `'Open 2-pane'`, `'Sash 2-pane'`, `'Sliding 2-pane'`, `'Simple door'`, `'Glass door'`, `'Sliding 4-pane'`, `'Awning'`, `'Opening only'`); `h1/h2/h3/w1/w2/o1/o2` control frame/sash proportions and were not individually verified for visual correctness — only that they produce a valid, non-degenerate shape. `window.Hosts` (not `Hosted`) is the confirmed correct property for attaching to a wall.
 
 A facade is not a distinct object type — model it as the exterior wall(s) (or `Arch.makeStructure` for a non-wall facade element like a curtain-wall panel or column grid) with windows/doors hosted on it. Position openings by setting `Placement.Base` relative to the host wall's local origin; use `Draft.move`/`Draft.rotate` to reposition existing elements instead of recreating them.
 
@@ -111,8 +125,8 @@ After generating a plan, check it satisfies the stated intent before reporting d
 
 - Room count and names: `[o.Label for o in doc.Objects if getattr(getattr(o, "Proxy", None), "Type", None) == "Space"]` (not `isDerivedFrom` — see above).
 - Each wall is actually hollow/thin, not a solid block: compare `sum(w.Shape.Volume for w in walls)` against the hand-calculated hollow-loop volume (`perimeter * width * height`) for the requested dimensions — they should match closely, not be an order of magnitude larger.
-- `room.Area` against a hand-calculated interior footprint before reporting it — do not repeat it to the user unverified (see above).
-- Window/door presence: don't trust that a `makeWindow` call succeeded just because it didn't raise — try `window.Shape.Volume` (or inspect the object in the GUI) and expect it may need a `Preset` first.
+- `room.Area` against a hand-calculated interior footprint before reporting it — do not repeat it to the user unverified; this is a known-broken value with no confirmed fix (see above).
+- Window/door presence: use `Arch.makeWindowPreset`, not bare `Arch.makeWindow` (see above), and still confirm with `window.Shape.Volume` (non-zero, no `RuntimeError`) rather than trusting a clean script exit.
 - Overall footprint: `floor.Shape.BoundBox` if a floor's shape is meaningful, or the fused wall outline.
 
 See `skills/cad/freecad-scripting` for the general verification pattern.
