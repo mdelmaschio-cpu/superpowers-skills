@@ -4,7 +4,18 @@
 set -uo pipefail
 
 OWNER="mdelmaschio-cpu"
-CACHE="${SKILL_SELECT_CACHE:-$HOME/.claude/skill-select-cache}"
+# Un $HOME con spazi o apostrofi (tipico su Windows: "C:\Users\Mario Rossi")
+# fa divergere git.exe e bash: git clone esce 0 ma i file non compaiono dove
+# bash li cerca. In quel caso la cache va altrove.
+default_cache() {
+  case "$HOME" in
+    *[\ \']*)
+      if [ -d /c/Users/Public ]; then printf '%s' /c/Users/Public/skill-select-cache
+      else printf '%s' "${TMPDIR:-/tmp}/skill-select-cache"; fi ;;
+    *) printf '%s' "$HOME/.claude/skill-select-cache" ;;
+  esac
+}
+CACHE="${SKILL_SELECT_CACHE:-$(default_cache)}"
 ROOT="${SUPERPOWERS_SKILLS_ROOT:-$HOME/.config/superpowers/skills}"
 IDX=""
 
@@ -73,6 +84,15 @@ fetch_one() {
   mkdir -p "$CACHE"
   if GIT_LFS_SKIP_SMUDGE=1 git clone --depth 1 -q \
        "https://github.com/$OWNER/$repo" "$dest" 2>/dev/null; then
+    # Non fidarsi del codice di uscita: verificare che i file ci siano davvero.
+    if ! git -C "$dest" rev-parse HEAD >/dev/null 2>&1; then
+      printf '  %-46s CLONE FANTASMA\n' "$repo" >&2
+      printf '     git ha riportato successo ma in %s non c\47e nulla.\n' "$dest" >&2
+      printf '     Di solito il percorso della cache contiene spazi o apostrofi e git\n' >&2
+      printf '     scrive altrove. Riprova indicando una cache in un percorso semplice:\n' >&2
+      printf '       SKILL_SELECT_CACHE=/c/Users/Public/skill-select-cache skill-select fetch %s\n' "$repo" >&2
+      return 1
+    fi
     printf '  %-46s %s\n' "$repo" "$dest"
   else
     rm -rf "$dest"

@@ -34,6 +34,14 @@ Deve elencare i 20 indici. Lo script sonda da solo i layout possibili — radice
 repository (`…/skills/meta/repo-router/`) oppure cartella `skills/` già scompattata
 (`…/meta/repo-router/`) — e onora `SUPERPOWERS_SKILLS_ROOT` se il router è altrove.
 
+### Cache dei repository
+
+Di default `~/.claude/skill-select-cache`. Se `$HOME` contiene spazi o apostrofi — su
+Windows è la norma — la cache passa a `/c/Users/Public/skill-select-cache`: con quei
+caratteri nel percorso `git.exe` e bash divergono, `git clone` esce con successo e i file
+non compaiono dove bash li cerca. Lo script se ne accorge e lo dice; per scegliere il
+percorso a mano, esporta `SKILL_SELECT_CACHE`.
+
 ### Aggiornamento
 
 Stesso comando dell'installazione: `git pull` e ricopia. Non aggiornarlo modificando
