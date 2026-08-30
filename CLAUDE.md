@@ -91,9 +91,12 @@ superpowers-skills/
     │   ├── parere-legale/                      # Formal Swiss legal opinion structure
     │   ├── ricerca-giurisprudenza-svizzera/    # Swiss case law (BGE/ATF) research
     │   └── due-diligence-legale-svizzera/      # Legal due diligence under Swiss law
-    ├── meta/                  # Skills about using/managing skills (5 skills)
+    ├── meta/                  # Skills about using/managing skills (6 skills)
     │   ├── gardening-skills-wiki/  # Wiki health check scripts
     │   ├── pulling-updates-from-skills-repository/
+    │   ├── repo-router/        # Lightweight router over the 76 personal GitHub repos
+    │   │   ├── SKILL.md        # Routing table: task → one category index
+    │   │   └── indexes/        # INDEX-01..INDEX-20, one file per category
     │   ├── sharing-skills/
     │   ├── testing-skills-with-subagents/
     │   └── writing-skills/
@@ -147,7 +150,7 @@ Note: `when_to_use` (not `description`) is the primary field the model uses for 
 | `debugging/` | Diagnosing failures, root cause analysis, error patterns | 4 |
 | `document-processing/` | Document/file format conversion (Word, PDF, Excel, etc. to Markdown) | 1 |
 | `legal/` | Swiss legal practice: CO/CC/CPC/LEF/LDIP statutory research, contract analysis/drafting, legal opinions, case law, due diligence | 10 |
-| `meta/` | Skills about working with Claude Code skills themselves | 5 |
+| `meta/` | Skills about working with Claude Code skills themselves | 6 |
 | `problem-solving/` | General reasoning, ideation, and decision-making strategies | 6 |
 | `research/` | Investigation, information synthesis, knowledge lineage | 1 |
 | `testing/` | Test strategies, TDD, flaky tests, anti-patterns | 3 |
@@ -313,6 +316,38 @@ npm run test:watch   # Watch mode
 **How it works:** Conversations are embedded locally (no API call) via @xenova/transformers and stored in sqlite-vec for ANN search. Summaries are generated via Claude Haiku (Sonnet fallback, ~$0.01-0.02/conversation). Exact text match serves as fallback.
 
 **When editing this skill's code:** run `npm test` after changes — it's the only skill with automated tests.
+
+## Repo Router — routing over the personal repository inventory
+
+`skills/meta/repo-router/` is a two-level router over the owner's 76 personal GitHub
+repositories (~4,210 skills), so a task loads one small index instead of the whole library.
+
+```
+skills/meta/repo-router/
+├── SKILL.md                       # level 1: routing table, task → one category
+└── indexes/
+    ├── INDEX-01-cataloghi-skill.md
+    ├── ...
+    └── INDEX-20-utility-infra.md  # level 2: repos + skill names for that category
+```
+
+**How it is meant to be used:**
+
+- The human partner names an index at the start of a task (e.g. "usa
+  `INDEX-07-diritto-svizzero.md`") → read that file only, then open 2–3 skills from it.
+- Or the task is described with no index named → read `SKILL.md`, match the request
+  against the routing table, pick ONE category, read that index.
+
+**Never load a whole category.** `INDEX-01` covers 1,854 skills and `INDEX-19` covers 823;
+loading either in bulk exhausts the context window before the task starts. Each index is
+~40 lines and already lists the skill names, which is enough to choose.
+
+**Keeping it current.** The indexes are generated from the actual `SKILL.md` files found in
+each repository, not from READMEs. When a repository is added, removed, or re-synced
+upstream, regenerate the affected index and update its counts — a stale index routes a task
+to a skill that no longer exists. The companion Word inventory
+(`Inventario_repository_e_skill_GitHub_<data>.docx`, kept outside this repo) carries the
+same 20 categories and names each index file at the top of its category.
 
 ## Wiki Health Tools
 
