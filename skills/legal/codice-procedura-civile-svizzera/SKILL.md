@@ -40,13 +40,17 @@ Trattare questo PDF come fonte normativa primaria, non come banca dati completa 
 ## Strumento di ricerca
 
 ```bash
-# Dalla radice del repository
-python skills/legal/codice-procedura-civile-svizzera/scripts/search_cpc_pdf.py --query "parola chiave"
-python skills/legal/codice-procedura-civile-svizzera/scripts/search_cpc_pdf.py --article 59
-python skills/legal/codice-procedura-civile-svizzera/scripts/search_cpc_pdf.py --article 17 --query "proroga di foro"
+# Percorsi relativi alla cartella di QUESTA skill: portarcisi prima.
+# L'installazione varia (repository clonato, oppure la sola cartella
+# skills/ scompattata in ~/.config/superpowers/skills), quindi un
+# percorso che parte dalla radice non vale ovunque. Lo script trova
+# da sé il proprio PDF, qualunque sia la directory di lavoro.
+python scripts/search_cpc_pdf.py --query "parola chiave"
+python scripts/search_cpc_pdf.py --article 59
+python scripts/search_cpc_pdf.py --article 17 --query "proroga di foro"
 
-# Installazione dipendenza (una tantum)
-pip install -r skills/legal/codice-procedura-civile-svizzera/scripts/requirements.txt
+# Installazione dipendenza (una tantum, per l'interprete che lancia lo script)
+pip install -r scripts/requirements.txt
 ```
 
 ## Regole di risposta
