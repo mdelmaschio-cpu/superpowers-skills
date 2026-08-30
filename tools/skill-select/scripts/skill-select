@@ -1,0 +1,124 @@
+#!/usr/bin/env bash
+# skill-select v2 — esecutore del repo-router.
+# Non contiene una mappa delle categorie: la legge da repo-router/indexes/.
+set -uo pipefail
+
+OWNER="mdelmaschio-cpu"
+CACHE="${SKILL_SELECT_CACHE:-$HOME/.claude/skill-select-cache}"
+ROOT="${SUPERPOWERS_SKILLS_ROOT:-$HOME/.config/superpowers/skills}"
+IDX=""
+
+die() { printf '%s\n' "$*" >&2; exit 1; }
+
+# Due layout possibili: ROOT = radice del repository (contiene skills/),
+# oppure ROOT = la cartella skills/ stessa (categorie al primo livello).
+need_router() {
+  local c
+  for c in "$ROOT/skills/meta/repo-router/indexes" \
+           "$ROOT/meta/repo-router/indexes" \
+           "$ROOT/superpowers-skills/skills/meta/repo-router/indexes"; do
+    [ -d "$c" ] && { IDX="$c"; return 0; }
+  done
+  die "repo-router non trovato. Percorsi controllati:
+  $ROOT/skills/meta/repo-router/indexes
+  $ROOT/meta/repo-router/indexes
+  $ROOT/superpowers-skills/skills/meta/repo-router/indexes
+Arriva con il repository superpowers-skills. Senza, non c'è tassonomia da cui partire:
+segnalalo invece di procedere a memoria.
+Se è installato altrove, esporta SUPERPOWERS_SKILLS_ROOT con quel percorso."
+}
+
+cmd_index() {
+  need_router
+  local q="${1:-}"
+  if [ -z "$q" ]; then
+    printf 'Indici disponibili in %s\n\n' "$IDX"
+    for f in "$IDX"/INDEX-*.md; do
+      printf '  %-42s %s\n' "$(basename "$f")" "$(sed -n 's/^# INDEX-[0-9]* — //p' "$f" | head -1)"
+    done
+    printf '\nLeggi UN solo indice, poi apri al massimo 2-3 skill.\n'
+    return 0
+  fi
+  local hits
+  hits=$(grep -ril -- "$q" "$IDX"/INDEX-*.md 2>/dev/null | sort)
+  [ -n "$hits" ] || die "Nessun indice contiene «$q». Elenca gli indici con: skill-select index"
+  printf 'Indici che citano «%s»:\n\n' "$q"
+  while IFS= read -r f; do
+    printf '  %s\n     %s\n     %s\n' \
+      "$(basename "$f")" \
+      "$(sed -n 's/^# INDEX-[0-9]* — //p' "$f" | head -1)" "$f"
+  done <<< "$hits"
+  local n; n=$(printf '%s\n' "$hits" | wc -l | tr -d ' ')
+  [ "$n" -gt 1 ] && printf '\n%s indici corrispondono: scegline UNO, non leggerli tutti.\n' "$n"
+  return 0
+}
+
+fetch_one() {
+  local repo="$1" update="$2" dest="$CACHE/$1"
+  if [ -d "$dest/.git" ] && git -C "$dest" rev-parse HEAD >/dev/null 2>&1; then
+    if [ "$update" = "yes" ]; then
+      printf '  aggiorno %s… ' "$repo"
+      if git -C "$dest" fetch --depth 1 -q origin 2>/dev/null &&
+         git -C "$dest" reset --hard -q FETCH_HEAD 2>/dev/null; then
+        printf 'ok\n'
+      else
+        printf 'fallito, uso la copia in cache\n'
+      fi
+    fi
+    printf '  %-46s %s\n' "$repo" "$dest"
+    return 0
+  fi
+  [ -e "$dest" ] && die "$dest esiste ma non è un clone valido. Controllalo a mano prima di procedere."
+  printf '  clono %s…\n' "$repo"
+  mkdir -p "$CACHE"
+  if GIT_LFS_SKIP_SMUDGE=1 git clone --depth 1 -q \
+       "https://github.com/$OWNER/$repo" "$dest" 2>/dev/null; then
+    printf '  %-46s %s\n' "$repo" "$dest"
+  else
+    rm -rf "$dest"
+    printf '  %-46s CLONE FALLITO\n' "$repo" >&2
+    printf '     Repository privato senza credenziali git, oppure il nome non esiste.\n' >&2
+    printf '     Segnalalo: non ripiegare su una skill diversa senza dirlo.\n' >&2
+    return 1
+  fi
+}
+
+cmd_fetch() {
+  local update=no rc=0
+  [ "${1:-}" = "--update" ] && { update=yes; shift; }
+  [ $# -gt 0 ] || die "Uso: skill-select fetch [--update] <repo> [<repo>…]"
+  printf 'Cache: %s\n' "$CACHE"
+  for r in "$@"; do fetch_one "$r" "$update" || rc=1; done
+  return $rc
+}
+
+cmd_find() {
+  local q="${1:-}"
+  [ -n "$q" ] || die "Uso: skill-select find <pattern>"
+  [ -d "$CACHE" ] || die "Cache vuota. Recupera prima un repository: skill-select fetch <repo>"
+  local hits
+  hits=$(find "$CACHE" -name SKILL.md -path "*$q*" 2>/dev/null | sort)
+  [ -n "$hits" ] || die "Nessuna SKILL.md corrisponde a «$q» fra i repository in cache.
+In cache ci sono: $(ls "$CACHE" 2>/dev/null | tr '\n' ' ')"
+  printf '%s\n' "$hits"
+  local n; n=$(printf '%s\n' "$hits" | wc -l | tr -d ' ')
+  [ "$n" -gt 3 ] && printf '\n%s risultati: leggine al massimo 3.\n' "$n" >&2
+  return 0
+}
+
+case "${1:-}" in
+  index) shift; cmd_index "$@" ;;
+  fetch) shift; cmd_fetch "$@" ;;
+  find)  shift; cmd_find  "$@" ;;
+  *) cat <<'USAGE'
+skill-select v2 — recupera i repository delle skill scelte dal repo-router.
+
+  skill-select index [parola]     elenca gli indici, o cerca quello giusto
+  skill-select fetch [--update] <repo>…   clona o riusa dalla cache
+  skill-select find <pattern>     localizza una SKILL.md fra i repo in cache
+
+La tassonomia sta in repo-router/indexes/, non qui. Leggi UN indice, apri
+al massimo 3 skill: mai una categoria intera.
+USAGE
+   exit 1 ;;
+esac
