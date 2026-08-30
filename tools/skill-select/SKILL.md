@@ -1,7 +1,7 @@
 ---
 name: skill-select
 description: Recupera su disco i repository GitHub personali (mdelmaschio-cpu) che contengono una skill scelta, e risolve una categoria in un file-indice del repo-router. Use when the user names a category or an INDEX-NN file, asks to "carica la categoria X", "attiva il gruppo Y", "usa le skill di Z", or when a skill named by an index lives in a repository not yet cloned locally. Non carica mai una categoria in blocco.
-version: 2.1.0
+version: 2.2.0
 when_to_use: when a task needs one of the personal GitHub skills and the repository holding it is not on disk yet, or when the user names a category ("carica la categoria sicurezza") or an index file ("usa INDEX-07-diritto-svizzero.md")
 ---
 
@@ -77,8 +77,16 @@ Poi Read sul percorso, e annuncia: «Ho letto la skill *X* da *repo*, la uso per
 | | |
 |---|---|
 | Tassonomia (fonte unica) | `repo-router/` sotto `$SUPERPOWERS_SKILLS_ROOT` (default `~/.config/superpowers/skills`). Lo script sonda da solo i due layout possibili: radice del repository (`…/skills/meta/repo-router/`) e cartella skills già scompattata (`…/meta/repo-router/`). |
-| Cache dei repository | `~/.claude/skill-select-cache/` |
+| Cache dei repository | `~/.claude/skill-select-cache/`, oppure `/c/Users/Public/skill-select-cache` quando `$HOME` contiene spazi o apostrofi. Forzabile con `SKILL_SELECT_CACHE`. |
 | Origine dei repository | `https://github.com/mdelmaschio-cpu/<nome>` |
+
+## Se `fetch` dice CLONE FANTASMA
+
+`git clone` è uscito con successo ma nella cache non c'è nulla. Succede quando il percorso
+della cache contiene spazi o apostrofi: su Windows `git.exe` e bash finiscono per guardare
+due cartelle diverse, e nessuno dei due se ne accorge. Rilancia indicando una cache in un
+percorso semplice, come suggerisce il messaggio d'errore. Non ignorare l'avviso: prima che
+questo controllo esistesse, il comando dichiarava successo e la skill non arrivava mai.
 
 ## Cosa è cambiato dalla v1
 
