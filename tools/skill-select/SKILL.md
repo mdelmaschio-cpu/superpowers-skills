@@ -1,7 +1,7 @@
 ---
 name: skill-select
 description: Recupera su disco i repository GitHub personali (mdelmaschio-cpu) che contengono una skill scelta, e risolve una categoria in un file-indice del repo-router. Use when the user names a category or an INDEX-NN file, asks to "carica la categoria X", "attiva il gruppo Y", "usa le skill di Z", or when a skill named by an index lives in a repository not yet cloned locally. Non carica mai una categoria in blocco.
-version: 2.2.0
+version: 2.3.0
 when_to_use: when a task needs one of the personal GitHub skills and the repository holding it is not on disk yet, or when the user names a category ("carica la categoria sicurezza") or an index file ("usa INDEX-07-diritto-svizzero.md")
 ---
 
@@ -22,13 +22,16 @@ va letto l'indice, non memorizzato.
 Se ti accorgi di stare per leggere il quarto SKILL.md, fermati e chiedi al partner umano
 quale dei candidati vuole.
 
+**Lo script non è nel PATH.** Va invocato con il percorso intero, come negli esempi qui sotto:
+`skill-select` da solo non è un comando e restituisce *command not found*.
+
 ## Procedura
 
 ### 1. Trova l'indice giusto
 
 ```bash
-scripts/skill-select index                 # elenca i 20 indici disponibili
-scripts/skill-select index diritto         # cerca l'indice per parola chiave
+~/.claude/skills/skill-select/scripts/skill-select index                 # elenca i 20 indici disponibili
+~/.claude/skills/skill-select/scripts/skill-select index diritto         # cerca l'indice per parola chiave
 ```
 
 Se il partner umano ha già nominato un file (`INDEX-07-diritto-svizzero.md`), salta la
@@ -44,8 +47,8 @@ aprire nulla.
 ### 3. Scegli al massimo 2-3 skill, poi recupera i repo che le contengono
 
 ```bash
-scripts/skill-select fetch superpowers-swisslegal-skills
-scripts/skill-select fetch bonsai-bim-skills editor        # più repo insieme
+~/.claude/skills/skill-select/scripts/skill-select fetch superpowers-swisslegal-skills
+~/.claude/skills/skill-select/scripts/skill-select fetch bonsai-bim-skills editor        # più repo insieme
 ```
 
 Stampa il percorso locale di ciascuno. Se il repository è già in cache lo riusa senza
@@ -57,7 +60,7 @@ clone fallisce con 403/404, **dillo** invece di ripiegare su una skill diversa.
 ### 4. Localizza il file e leggilo
 
 ```bash
-scripts/skill-select find analisi-contratto        # cerca fra i repo già in cache
+~/.claude/skills/skill-select/scripts/skill-select find analisi-contratto        # cerca fra i repo già in cache
 ```
 
 Poi Read sul percorso, e annuncia: «Ho letto la skill *X* da *repo*, la uso per *scopo*».

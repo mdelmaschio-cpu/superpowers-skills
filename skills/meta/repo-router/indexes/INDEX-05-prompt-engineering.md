@@ -10,7 +10,8 @@
 
 1. Leggi la tabella qui sotto e scegli **al massimo 2-3 skill** pertinenti al task.
 2. Se la skill sta in un repository non ancora sul disco, recuperalo con
-   `skill-select fetch <repo>`. **Non clonare a mano**: perderesti la cache condivisa,
+   `~/.claude/skills/skill-select/scripts/skill-select fetch <repo>` (percorso intero:
+   lo script non è nel PATH). **Non clonare a mano**: perderesti la cache condivisa,
    e su una home con spazi o apostrofi il clone diretto può riuscire in apparenza
    senza scrivere nulla — `skill-select` sceglie un percorso sicuro e se ne accorge.
 3. Apri con Read, sul percorso completo (`.../SKILL.md`), le skill scelte e nessun'altra.

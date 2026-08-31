@@ -2,7 +2,7 @@
 name: Repo Router
 description: Router leggero sull'inventario dei 76 repository GitHub personali - instrada un task alla categoria giusta e carica un solo file-indice invece dell'intera libreria.
 when_to_use: when the user names an INDEX-NN file, asks which of their own repositories or skills apply to a task, or starts a task in one of their domains (diritto svizzero, norme SIA, architettura, cantiere, BIM, contabilita' ticinese, marketing, documenti, sicurezza) and you need to find the right skill without loading everything
-version: 1.1.0
+version: 1.0.0
 languages: all
 ---
 
@@ -15,7 +15,8 @@ Instrada un task verso **una sola** categoria dell'inventario GitHub personale (
 1. **Se il partner umano nomina un file `INDEX-NN-...md`** → leggilo subito con Read da `indexes/` e salta la tabella.
 2. **Altrimenti** → confronta il task con la tabella qui sotto, scegli **una** categoria (al massimo due se il task è davvero ibrido) e leggi quel solo indice.
 3. Dall'indice apri **2-3 skill al massimo**. Mai l'intera categoria.
-4. Se il repository che le contiene non è sul disco, recuperalo con `skill-select fetch <repo>`,
+4. Se il repository che le contiene non è sul disco, recuperalo con
+   `~/.claude/skills/skill-select/scripts/skill-select fetch <repo>` — percorso intero, lo script non è nel PATH —
    mai con un `git clone` scritto a mano: la cache condivisa e la scelta di un percorso sicuro stanno lì.
 5. Annuncia sempre quale indice hai letto e quali skill hai aperto.
 
