@@ -36,9 +36,10 @@ superpowers-skills/
     │   ├── csv-to-sif/ sif-to-csv/
     │   ├── slide-deck-generator/ color-palette-generator/ resize-images/
     │   └── ...
-    ├── cad/                   # FreeCAD scripting & BIM modeling skills (2 skills)
+    ├── cad/                   # FreeCAD scripting & BIM modeling skills (3 skills)
     │   ├── freecad-scripting/       # Python API + freecadcmd: documents, volumes, placement, booleans
-    │   └── freecad-bim-modeling/    # Draft/Arch/BIM + TechDraw: floor plans, walls, rooms, facades, 2D plans
+    │   ├── freecad-bim-modeling/    # Draft/Arch/BIM + TechDraw: floor plans, walls, rooms, facades, 2D plans
+    │   └── detecting-freecad-mcp-drift/ # freecad-mcp server vs FreeCADMCP addon version drift: detect & repair
     ├── collaboration/         # Team collaboration & git workflow skills (10 skills)
     │   ├── brainstorming/
     │   ├── dispatching-parallel-agents/
@@ -144,7 +145,7 @@ Note: `when_to_use` (not `description`) is the primary field the model uses for 
 |----------|---------|-------|
 | `architecture/` | System design, structural patterns, trade-off analysis | 1 |
 | `architecture-design/` | Architecture practice, NYC due diligence, sustainability (EPD), materials research, product data, presentations | 39 |
-| `cad/` | FreeCAD Python API, freecadcmd automation, .FCStd files, BIM modeling (floor plans, walls, facades) | 2 |
+| `cad/` | FreeCAD Python API, freecadcmd automation, .FCStd files, BIM modeling (floor plans, walls, facades), MCP server/addon version drift | 3 |
 | `collaboration/` | Team workflows, git branching, communication, handoff patterns | 10 |
 | `context-engineering/` | LLM context management, multi-agent patterns, memory systems, evaluation, harness engineering | 15 |
 | `debugging/` | Diagnosing failures, root cause analysis, error patterns | 4 |
