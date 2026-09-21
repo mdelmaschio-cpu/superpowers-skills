@@ -106,7 +106,7 @@ npm test 2>&1 | grep 'DEBUG git init'
 
 If something appears during tests but you don't know which test:
 
-Use the bisection script: @find-polluter.sh
+Use the bisection script: find-polluter.sh (in this skill's directory)
 
 ```bash
 ./find-polluter.sh '.git' 'src/**/*.test.ts'
