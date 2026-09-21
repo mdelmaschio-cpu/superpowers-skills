@@ -4,7 +4,9 @@ Community-editable skills library for Claude Code's superpowers plugin. Automati
 
 ## Repository Purpose
 
-A shared, community-maintained library of Claude Code skills organized by functional category. Users fork the repo, add new skills or improve existing ones, and contribute back via PRs. Skills are markdown files that give Claude structured guidance for specific task types.
+A shared library of Claude Code skills organized by functional category. Skills are markdown files that give Claude structured guidance for specific task types.
+
+This is a fork. The original upstream `obra/superpowers-skills` was archived on 2025-10-27 and is read-only, so contributions go to this fork rather than back upstream — see *Contributing a Skill* below.
 
 ## Structure
 
@@ -393,7 +395,9 @@ Add an entry to `skills/REQUESTS.md`:
 
 Be specific: "Flaky test debugging" beats "testing help". Include error messages or behavior patterns where possible.
 
-### Contributing Back Upstream
+### Contributing a Skill
+
+**The original upstream `obra/superpowers-skills` was archived on 2025-10-27 and is read-only.** It no longer accepts pull requests. Open PRs against this fork instead.
 
 Use the `meta/sharing-skills/` skill for the full workflow:
 
@@ -404,12 +408,22 @@ git checkout -b "add-<skill-name>-skill"
 git add skills/<category>/<skill-name>/
 git commit -m "Add <skill-name> skill"
 git push -u origin "add-<skill-name>-skill"
-gh pr create --repo obra/superpowers-skills --title "Add <skill-name> skill" --body "..."
+gh pr create --repo mdelmaschio-cpu/superpowers-skills --base main \
+  --title "Add <skill-name> skill" --body "..."
+```
+
+**Opening the PR in a browser instead of with `gh`:** GitHub defaults a fork's `base repository` to the parent, which here is the archived repo. The page then shows an "archived / read-only" banner and the PR cannot be created. Switch `base repository` to `mdelmaschio-cpu/superpowers-skills` before filling in anything else, and confirm all four selectors read:
+
+```
+base repository: mdelmaschio-cpu/superpowers-skills    base: main
+head repository: mdelmaschio-cpu/superpowers-skills    compare: <your-branch>
 ```
 
 Each skill gets its own branch and PR — never batch multiple skills in one PR.
 
 ### Pulling Upstream Updates
+
+Upstream is archived and will receive no further commits, so this sync is now a no-op in practice. It is kept for the historical remote, and in case the project is revived under a new owner.
 
 Use the `meta/pulling-updates-from-skills-repository/` skill. Quick version:
 
