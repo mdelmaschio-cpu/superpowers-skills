@@ -35,7 +35,7 @@ Instrada un task verso **una sola** categoria dell'inventario GitHub personale (
 | diritto svizzero: CC, CO, CPC, LEF, LDIP, diritto contabile; analisi o redazione di clausole contrattuali; parere legale; due diligence; giurisprudenza BGE/ATF | `indexes/INDEX-07-diritto-svizzero.md` |
 | contratti in generale (non svizzeri), NDA, clausole di rischio, compliance, privacy, contenzioso, governance AI | `indexes/INDEX-08-legal-tech.md` |
 | contabilità societaria, chiusura, bilancio, fiscalità e amministrazione aziendale in Ticino | `indexes/INDEX-09-contabilita-fiscale.md` |
-| norme SIA (102/103/118), AEAI antincendio, codici costo BKP/CCC, posizioni CPN/NPK, LAINF/AVS/LPP di cantiere, capitolati e preventivi svizzeri | `indexes/INDEX-10-norme-sia.md` |
+| norme SIA (102/103/118), AEAI antincendio, codici costo BKP/CCC, posizioni CPN/NPK, LAINF/AVS/LPP di cantiere, capitolati e preventivi svizzeri, diritto edilizio ticinese | `indexes/INDEX-10-norme-sia.md` |
 | progetto di architettura, analisi del sito, zoning e urbanistica, due diligence immobiliare, programma degli spazi, ricerca materiali, EPD e carbonio incorporato | `indexes/INDEX-11-architettura-urbanistica.md` |
 | impresa generale o subappalto: computi e BOQ, preventivi di costruzione, gare e procurement, programma lavori 4D/5D, direzione cantiere, controllo difetti | `indexes/INDEX-12-cantiere-costi.md` |
 | modellare in BIM o CAD: IFC, Bonsai/Blender, FreeCAD, pianta, muri, solai, facciate, tavole 2D, modello 3D di edificio | `indexes/INDEX-13-bim-cad-3d.md` |

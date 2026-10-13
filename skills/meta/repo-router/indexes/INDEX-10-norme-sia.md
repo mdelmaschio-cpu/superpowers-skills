@@ -2,7 +2,7 @@
 
 **Ambito.** Normativa tecnica ed economica del costruire in Svizzera e in Ticino: SIA 102/103/118, AEAI/VKF antincendio, codifica costi BKP/CCC, CPN/NPK, obblighi LAINF/AVS/LPP di cantiere.
 
-**Si attiva quando il task riguarda:** norme SIA (102/103/118), AEAI antincendio, codici costo BKP/CCC, posizioni CPN/NPK, LAINF/AVS/LPP di cantiere, capitolati e preventivi svizzeri.
+**Si attiva quando il task riguarda:** norme SIA (102/103/118), AEAI antincendio, codici costo BKP/CCC, posizioni CPN/NPK, LAINF/AVS/LPP di cantiere, capitolati e preventivi svizzeri, diritto edilizio ticinese (licenza edilizia, indici, distanze, fuori zona, vicinato, difetti).
 
 **Già installate localmente:** swiss-norme-sia-skills è anche registrata come skill attiva della sessione (slash-command swiss-norme-sia-skills)
 
@@ -24,7 +24,7 @@
 
 ### swiss-norme-sia-skills
 - **Origine:** — (non risulta fork)
-- **Cosa offre:** Skill operativa unica ma corposa: 35 documenti ufficiali (SIA, KBOB, edilizia cantonale ticinese) organizzati in 10 categorie tematiche, con script di ricerca per parola chiave che cita documento e pagina.
+- **Cosa offre:** Skill operativa unica ma corposa: 38 documenti (SIA, KBOB, edilizia cantonale ticinese, più il Manuale pratico di diritto edilizio e pianificazione in Ticino, ed. 08.10.2026, fonte secondaria) organizzati in 11 categorie tematiche, con script di ricerca per parola chiave (PDF e .docx) che cita documento e pagina o capitolo.
 - **Inventario:** 1 skill
 - **Skill:** (skill unica alla radice)
 
